@@ -3,7 +3,9 @@ package test.selenium.util;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public abstract class IngresoLogin {
+import gedo.api.qa.Constantes;
+
+public abstract class IngresoLogin implements Constantes{
 	private WebDriver driver;
 	private String url;
 	

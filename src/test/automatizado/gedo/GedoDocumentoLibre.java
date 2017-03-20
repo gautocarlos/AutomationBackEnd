@@ -8,12 +8,13 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import gedo.api.qa.Constantes;
 import test.selenium.util.CapturarPantalla;
 import test.selenium.util.DriverPhantom;
 import test.selenium.util.IngresoLoginCas;
 import test.selenium.util.SeleniumWait;
 
-public class GedoDocumentoLibre {
+public class GedoDocumentoLibre implements Constantes{
 	private WebDriver driver;
 	// private String url;
 	// private String usuario;
@@ -82,7 +83,6 @@ public class GedoDocumentoLibre {
 		this.capturarPantalla = capturarPantalla;
 	}
 
-	// Lógica de automatización
 	public void inicializarDriver() {
 		try {
 			setDriver(new DriverPhantom().inicializar());
@@ -96,53 +96,103 @@ public class GedoDocumentoLibre {
 		new IngresoLoginCas(getDriver(), getUrl(), getUsuario(), getPassword());
 	}
 
+	// Lógica de automatización
 	@Test
 	public void testGEDOInicioDocumentoLibre() throws Exception {
-		// Separar constantes
-		String inicioDocumento = "//div[2]/div[1]/div/div/div[1]/div/div[8]/div[1]/div[1]/div";
-		String documentoElectronico = "//td[3]/i/input";
-		String producirloYoMismo = "//div[6]/div/table/tbody/tr/td/div/table/tbody/tr/td/table/tbody/tr/td[11]/div/div/div/img";
-		String campoReferencia = "//td[2]/input";
-		String firmarYoMismo = "//tr[7]/td/div/div/div/img";
-		String firmarConCertificado = "//td[5]/div/div/div/img";
-		String volverAlBuzonDeTareas = "//td[2]/div/div/div/div/img";
-		// Separar constantes
-
-		// Variables
+		// Parametrizar o externalizar datos variables
 		String acronimoGEDO = "IF";
 		String textoReferencia = "PhantomJS - AUTOMATIZADO";
-		String rutaArchivoPuntoDoc = "C:\\Users\\cargauto\\Downloads\\GobTuc_Diseño Funcional-Expediente Electrónico.doc";
-		// Variables
+		String archivoPuntoDoc = "GobTuc_Diseño Funcional-Expediente Electrónico.doc";
+		String rutaArchivoPuntoDoc = RUTAARCHIVOSENTRADA + archivoPuntoDoc;
+		// Parametrizar o externalizar datos variables
+
 		try {
-			driver.findElement(By.xpath(inicioDocumento)).click();
-			getEspera().waitElementByXpath(inicioDocumento);
-			driver.findElement(By.xpath(documentoElectronico)).clear();
-			driver.findElement(By.xpath(documentoElectronico)).sendKeys(acronimoGEDO);
-			driver.findElement(By.xpath(documentoElectronico)).click();
-			driver.findElement(By.xpath(producirloYoMismo)).click();
+			inicioDocumento(INICIODOCUMENTO);
+			iniciarProduccionDeDocumentoLibre(DOCUMENTOELECTRONICO, acronimoGEDO);
+			producirloYoMismoLibre(PRODUCIRLOYOMISMO);
 			getCapturarPantalla().capturarPantalla();
-			getEspera().waitElementByXpath(campoReferencia);
-			driver.findElement(By.xpath(campoReferencia)).clear();
-			driver.findElement(By.xpath(campoReferencia)).sendKeys(textoReferencia);
-			// driver.findElement(By.name("file")).clear();
-			driver.findElement(By.name("file")).sendKeys(rutaArchivoPuntoDoc);
+			producirDocumentoLibreImportarWord(CAMPOREFERENCIA, textoReferencia, rutaArchivoPuntoDoc);
 			getEspera().getWait(); // Esperar a que suba el archivo word
 			getCapturarPantalla().capturarPantalla();
-			driver.findElement(By.xpath(firmarYoMismo)).click();
-			// getEspera().getWait(); // Ver si aplica espera genérica o sobre
-			// el
-			// botón de firmar con certificado
-			getEspera().waitElementByXpath(firmarConCertificado);
+			firmarYoMismo(FIRMARYOMISMO);
+			getEspera().waitElementByXpath(FIRMARCONCERTIFICADO);
 			getCapturarPantalla().capturarPantalla();
-			driver.findElement(By.xpath(firmarConCertificado)).click();
-			getEspera().waitElementByXpath(volverAlBuzonDeTareas);
+			firmarConCertificado(FIRMARCONCERTIFICADO);
+			getEspera().waitElementByXpath(VOLVERALBUZONDETAREAS);
 			getCapturarPantalla().capturarPantalla();
-			driver.findElement(By.xpath(volverAlBuzonDeTareas)).click();
+			volverAlBuzonDeTareas(VOLVERALBUZONDETAREAS);
 			getCapturarPantalla().capturarPantalla();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
+	}
+
+	/**
+	 * @param campoReferencia
+	 * @param textoReferencia
+	 * @param rutaArchivoPuntoDoc
+	 */
+	private void producirDocumentoLibreImportarWord(String campoReferencia, String textoReferencia,
+			String rutaArchivoPuntoDoc) {
+		getEspera().waitElementByXpath(campoReferencia);
+		driver.findElement(By.xpath(campoReferencia)).clear();
+		driver.findElement(By.xpath(campoReferencia)).sendKeys(textoReferencia);
+		driver.findElement(By.name("file")).sendKeys(rutaArchivoPuntoDoc);
+	}
+
+	/**
+	 * @param producirloYoMismo
+	 */
+	private void producirloYoMismoLibre(String producirloYoMismo) {
+		clickByXPath(producirloYoMismo);
+	}
+
+	/**
+	 * @param firmarYoMismo
+	 */
+	private void firmarYoMismo(String firmarYoMismo) {
+		clickByXPath(firmarYoMismo);
+	}
+
+	/**
+	 * @param firmarConCertificadoLibre
+	 */
+	private void firmarConCertificado(String firmarConCertificadoLibre) {
+		clickByXPath(firmarConCertificadoLibre);
+	}
+
+	/**
+	 * @param volverAlBuzonDeTareas
+	 */
+	private void volverAlBuzonDeTareas(String volverAlBuzonDeTareas) {
+		clickByXPath(volverAlBuzonDeTareas);
+	}
+
+	/**
+	 * @param xpath
+	 */
+	private void clickByXPath(String xpath) {
+		driver.findElement(By.xpath(xpath)).click();
+	}
+
+	/**
+	 * @param documentoElectronico
+	 * @param acronimoGEDO
+	 */
+	private void iniciarProduccionDeDocumentoLibre(String documentoElectronico, String acronimoGEDO) {
+		getEspera().waitElementByXpath(documentoElectronico);
+		driver.findElement(By.xpath(documentoElectronico)).clear();
+		driver.findElement(By.xpath(documentoElectronico)).sendKeys(acronimoGEDO);
+		producirloYoMismoLibre(documentoElectronico);
+	}
+
+	/**
+	 * @param inicioDocumento
+	 */
+	private void inicioDocumento(String inicioDocumento) {
+		getEspera().waitElementByXpath(inicioDocumento);
+		clickByXPath(inicioDocumento);
 	}
 
 	@After

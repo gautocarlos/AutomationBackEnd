@@ -31,7 +31,7 @@ public class GedoDocumentoLibre implements Constantes{
 	public GedoDocumentoLibre() {
 		inicializarDriver();
 		setEspera(new SeleniumWait(getDriver()));
-		setCapturarPantalla(new CapturarPantalla(getDriver(), rutaCapturasDePantalla));
+		setCapturarPantalla(new CapturarPantalla(getDriver(), rutaCapturasDePantalla, "GEDO_"));
 	}
 
 	public String getUrl() {

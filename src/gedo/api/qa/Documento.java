@@ -6,6 +6,9 @@ import org.openqa.selenium.WebDriver;
 import test.selenium.util.CapturarPantalla;
 import test.selenium.util.SeleniumWait;
 
+/***
+ * @autor Carlos Gauto
+ **/
 public abstract class Documento implements Constantes {
 
 	private WebDriver driver;
@@ -13,11 +16,21 @@ public abstract class Documento implements Constantes {
 	private CapturarPantalla capturarPantalla;
 	private String rutaCapturasDePantalla;
 
-	public Documento(WebDriver driver, String rutaArchivosEntrada) {
+	/***
+	 * @param driver
+	 *            - Se trata del driver de Selenium propiamente dicho
+	 * @param rutaArchivosEntrada
+	 *            - Ruta donde se dejan los archivos de entrada por ejemplo:
+	 *            archivos para un documento importado o de trabajo entre otros
+	 * @param patron
+	 *            - Se utiliza para setear un prefijo para los archivos de
+	 *            capturas de pantalla
+	 **/
+	public Documento(WebDriver driver, String rutaArchivosEntrada, String patron) {
 		// inicializarDriver();
 		setDriver(driver);
 		setEspera(new SeleniumWait(getDriver()));
-		setCapturarPantalla(new CapturarPantalla(getDriver(), rutaArchivosEntrada));
+		setCapturarPantalla(new CapturarPantalla(getDriver(), rutaArchivosEntrada, patron));
 	}
 
 	public WebDriver getDriver() {
@@ -111,5 +124,5 @@ public abstract class Documento implements Constantes {
 		getDriver().findElement(By.xpath(CAMPOREFERENCIA)).sendKeys(textoReferencia);
 	}
 
-//	public abstract void producirDocumento(String textoReferencia);
+	// public abstract void producirDocumento(String textoReferencia);
 }

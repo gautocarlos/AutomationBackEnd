@@ -23,7 +23,7 @@ public class DocumentoImportado extends Documento {
 		getDriver().findElement(By.xpath(SELECCCIONARARCHIVO)).sendKeys(RUTAARCHIVOSENTRADA + archivoImportado);
 	}
 
-	public void producirDocumentoImportado(String textoReferencia, String archivoImportado) {
+	public void producirDocumentoImportado(String textoReferencia, String archivoImportado) throws Exception {
 		completarReferencia(textoReferencia);
 		seleccionarArchivo(archivoImportado);
 	}

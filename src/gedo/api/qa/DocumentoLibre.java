@@ -19,9 +19,10 @@ public class DocumentoLibre extends Documento {
 	 * 
 	 * @param textoReferencia
 	 * @param rutaArchivoPuntoDoc
+	 * @throws Exception 
 	 */
 
-	public void producirDocumentoLibreImportarWord(String textoReferencia, String archivoPuntoDoc) {
+	public void producirDocumentoLibreImportarWord(String textoReferencia, String archivoPuntoDoc) throws Exception {
 		// getEspera().waitElementByXpath(campoReferencia);
 		// getDriver().findElement(By.xpath(campoReferencia)).clear();
 		// getDriver().findElement(By.xpath(campoReferencia)).sendKeys(textoReferencia);

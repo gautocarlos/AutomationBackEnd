@@ -132,9 +132,10 @@ public class GedoDocumentoLibre implements Constantes{
 	 * @param campoReferencia
 	 * @param textoReferencia
 	 * @param rutaArchivoPuntoDoc
+	 * @throws Exception 
 	 */
 	private void producirDocumentoLibreImportarWord(String campoReferencia, String textoReferencia,
-			String rutaArchivoPuntoDoc) {
+			String rutaArchivoPuntoDoc) throws Exception {
 		getEspera().waitElementByXpath(campoReferencia);
 		driver.findElement(By.xpath(campoReferencia)).clear();
 		driver.findElement(By.xpath(campoReferencia)).sendKeys(textoReferencia);
@@ -179,8 +180,9 @@ public class GedoDocumentoLibre implements Constantes{
 	/**
 	 * @param documentoElectronico
 	 * @param acronimoGEDO
+	 * @throws Exception 
 	 */
-	private void iniciarProduccionDeDocumentoLibre(String documentoElectronico, String acronimoGEDO) {
+	private void iniciarProduccionDeDocumentoLibre(String documentoElectronico, String acronimoGEDO) throws Exception {
 		getEspera().waitElementByXpath(documentoElectronico);
 		driver.findElement(By.xpath(documentoElectronico)).clear();
 		driver.findElement(By.xpath(documentoElectronico)).sendKeys(acronimoGEDO);
@@ -189,8 +191,9 @@ public class GedoDocumentoLibre implements Constantes{
 
 	/**
 	 * @param inicioDocumento
+	 * @throws Exception 
 	 */
-	private void inicioDocumento(String inicioDocumento) {
+	private void inicioDocumento(String inicioDocumento) throws Exception {
 		getEspera().waitElementByXpath(inicioDocumento);
 		clickByXPath(inicioDocumento);
 	}

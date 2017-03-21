@@ -33,4 +33,13 @@ public interface Constantes {
 	public static final String CAMPOACCEDERCAS = "/html/body/div/div[2]/div[2]/div/div/div/div/div[4]/button";
 	// DocumentoImportado
 	public static final String SELECCCIONARARCHIVO = "//table/tbody[2]/tr/td[1]/span/form/input";
+	/*
+	 * Cartel al intentar enviar una tarea de confección a un usuario que no
+	 * pertenece a la repartición del emisor
+	 */
+	public static final String DISTINTAREPASI = "//tbody/tr/td[1]/span/table/tbody/tr[2]/td[2]";
+	public static final String DISTINTAREPANO = "//tbody/tr/td[3]/span/table/tbody/tr[2]/td[2]";
+	
+	public static final String PROCESOPRODUCCION = "//span[contains(text(),'El proceso de producción del documento se ha iniciado correctamente')]";
+	public static final String TDMSJBOXOK = "//td[contains(text(),'OK')]";
 }

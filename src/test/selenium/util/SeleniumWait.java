@@ -29,10 +29,11 @@ public class SeleniumWait {
 
 	}
 
-	public void waitElementByXpath(String xpath) {
+	public void waitElementByXpath(String xpath) throws Exception {
+
 		for (int second = 0;; second++) {
 			if (second >= 60)
-				fail("timeout");
+				new Exception("Timeout: NO existe el elemento con xpath: " + xpath);
 			try {
 				if (isElementPresent(By.xpath(xpath))) {
 					System.out.println("Existe el elemento con xpath: " + xpath);
@@ -40,12 +41,11 @@ public class SeleniumWait {
 				}
 				Thread.sleep(1000);
 			} catch (Exception e) {
-				System.out.println("NO existe el elemento con xpath: " + xpath);
-				System.out.println(e.getMessage());
+				e.printStackTrace();
+				throw e;
 			}
 
 		}
-
 	}
 
 	private boolean isElementPresent(By by) {

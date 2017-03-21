@@ -10,10 +10,12 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+
+import gedo.api.qa.Constantes;
 //import org.openqa.selenium.phantomjs.PhantomJSDriver;
 //import org.openqa.selenium.remote.Augmenter;
 
-public class CapturarPantalla {
+public class CapturarPantalla implements Constantes {
 
 	private WebDriver driver;
 	private String rutaCapturasDePantalla = "capturasDePantalla";
@@ -41,18 +43,25 @@ public class CapturarPantalla {
 		this.driver = driver;
 	}
 
-	public void capturarPantalla() throws IOException {
+	public void capturarPantalla(/* String patron */) throws IOException {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss");
 		Date date = new Date();
+		String nombreArchivoCaptura;
+		/***
+		 * TODO Recibir como parámetro el campo: patrón para definir el patrón
+		 * en el nombre de la captura realizada, por ejemplo una opción podría
+		 * ser el sistema que realiza la prueba
+		 **/
+		String patron = "GEDO_";
 		System.out.println(dateFormat.format(date)); // 2016-11-16_12.08.43
 		System.out.println("Tomando captura de pantalla.");
-//		setDriver((PhantomJSDriver) new Augmenter().augment(getDriver()));
+		// setDriver((PhantomJSDriver) new Augmenter().augment(getDriver()));
 		File srcFile = ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.FILE);
 		System.out.println("File:" + srcFile);
 		try {
-			FileUtils.copyFile(srcFile,
-					new File(".\\" + rutaCapturasDePantalla + "\\screenshot_" + dateFormat.format(date) + ".png"));
-			System.out.println("Captura de pantalla realizada.");
+			nombreArchivoCaptura = RUTACAPTURASDEPANTALLA + patron + dateFormat.format(date) + ".png";
+			FileUtils.copyFile(srcFile, new File(nombreArchivoCaptura));
+			System.out.println("Captura de pantalla realizada:" + nombreArchivoCaptura);
 		} catch (IOException e) {
 			e.printStackTrace();
 			throw e;

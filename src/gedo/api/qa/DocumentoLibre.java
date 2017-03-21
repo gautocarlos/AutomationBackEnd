@@ -11,17 +11,17 @@ public class DocumentoLibre extends Documento {
 
 	/**
 	 * TODO: Quitar harcode "file"
-	 * 
-	 * @param campoReferencia
 	 * @param textoReferencia
 	 * @param rutaArchivoPuntoDoc
 	 */
 
-	public void producirDocumentoLibreImportarWord(String campoReferencia, String textoReferencia,
-			String archivoPuntoDoc) {
-		getEspera().waitElementByXpath(campoReferencia);
-		getDriver().findElement(By.xpath(campoReferencia)).clear();
-		getDriver().findElement(By.xpath(campoReferencia)).sendKeys(textoReferencia);
+	public void producirDocumentoLibreImportarWord(String textoReferencia, String archivoPuntoDoc) {
+//		getEspera().waitElementByXpath(campoReferencia);
+//		getDriver().findElement(By.xpath(campoReferencia)).clear();
+//		getDriver().findElement(By.xpath(campoReferencia)).sendKeys(textoReferencia);
+		completarReferencia(textoReferencia);
 		getDriver().findElement(By.name("file")).sendKeys(RUTAARCHIVOSENTRADA + archivoPuntoDoc);
 	}
+
+
 }

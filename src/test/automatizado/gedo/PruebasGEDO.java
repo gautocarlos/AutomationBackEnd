@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 
 import gedo.api.qa.Constantes;
+import gedo.api.qa.DocumentoImportado;
 import gedo.api.qa.DocumentoLibre;
 import test.selenium.util.DriverPhantom;
 import test.selenium.util.IngresoLoginCas;
@@ -83,7 +84,7 @@ public class PruebasGEDO implements Constantes {
 			documentoLibre.iniciarProduccionDeDocumento(DOCUMENTOELECTRONICO, acronimoGEDO);
 			documentoLibre.producirloYoMismo(PRODUCIRLOYOMISMO);
 			documentoLibre.getCapturarPantalla().capturarPantalla();
-			documentoLibre.producirDocumentoLibreImportarWord(CAMPOREFERENCIA, textoReferencia, archivoPuntoDoc);
+			documentoLibre.producirDocumentoLibreImportarWord(textoReferencia, archivoPuntoDoc);
 			documentoLibre.getEspera().getWait(); // Esperar a que suba el archivo word
 			documentoLibre.getCapturarPantalla().capturarPantalla();
 			documentoLibre.firmarYoMismo(FIRMARYOMISMO);
@@ -99,7 +100,37 @@ public class PruebasGEDO implements Constantes {
 		}
 
 	}
+	@Test
+	public void testGEDODocumentoImportado() throws Exception {
+		// Parametrizar o externalizar datos variables
+		String acronimoGEDO = "IMAUT";
+		String textoReferencia = "PhantomJS - AUTOMATIZADO - Importado";
+		String archivoImportado = "archivoImportado.png";
+//		String rutaArchivoPuntoDoc = RUTAARCHIVOSENTRADA + archivoPuntoDoc;
+		DocumentoImportado documentoImportado = new DocumentoImportado(getDriver(), RUTAARCHIVOSENTRADA);
+		// Parametrizar o externalizar datos variables
 
+		try {
+			documentoImportado.inicioDocumento(INICIODOCUMENTO);
+			documentoImportado.iniciarProduccionDeDocumento(DOCUMENTOELECTRONICO, acronimoGEDO);
+			documentoImportado.producirloYoMismo(PRODUCIRLOYOMISMO);
+			documentoImportado.getCapturarPantalla().capturarPantalla();
+			documentoImportado.producirDocumentoImportado(textoReferencia, archivoImportado);
+			documentoImportado.getEspera().getWait(); // Esperar a que suba el archivo word
+			documentoImportado.getCapturarPantalla().capturarPantalla();
+			documentoImportado.firmarYoMismo(FIRMARYOMISMO);
+			documentoImportado.getEspera().waitElementByXpath(FIRMARCONCERTIFICADO);
+			documentoImportado.getCapturarPantalla().capturarPantalla();
+			documentoImportado.firmarConCertificado(FIRMARCONCERTIFICADO);
+			documentoImportado.getEspera().waitElementByXpath(VOLVERALBUZONDETAREAS);
+			documentoImportado.getCapturarPantalla().capturarPantalla();
+			documentoImportado.volverAlBuzonDeTareas(VOLVERALBUZONDETAREAS);
+			documentoImportado.getCapturarPantalla().capturarPantalla();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
 	@After
 	public void tearDown() throws Exception {
 		driver.quit();

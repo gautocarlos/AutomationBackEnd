@@ -9,8 +9,11 @@ public interface Constantes {
 	public static final String FIRMARCONCERTIFICADO = "//td[5]/div/div/div/img";
 	public static final String VOLVERALBUZONDETAREAS = "//td[2]/div/div/div/div/img";
 	public static final String RUTAARCHIVOSENTRADA = ".\\archivosDeEntrada\\";
+	public static final String RUTACAPTURASDEPANTALLA = ".\\capturasDePantalla\\";
 	public static final String URLGEDO = "http://eug.nac.gde.gob.ar/gedo-web/";
 	public static final String CAMPOUSUARIOCAS = "/html/body/div/div[2]/div[2]/div/div/div/div/div[2]/div/input";
 	public static final String CAMPOPASSWORDCAS = "/html/body/div/div[2]/div[2]/div/div/div/div/div[3]/div/input";
-	public static final String CAMPOACCEDERCAS ="/html/body/div/div[2]/div[2]/div/div/div/div/div[4]/button";
+	public static final String CAMPOACCEDERCAS = "/html/body/div/div[2]/div[2]/div/div/div/div/div[4]/button";
+	// DocumentoImportado
+	public static final String SELECCCIONARARCHIVO ="//table/tbody[2]/tr/td[1]/span/form/input";
 }

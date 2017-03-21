@@ -105,4 +105,11 @@ public abstract class Documento implements Constantes {
 		driver.findElement(By.xpath(xpath)).click();
 	}
 
+	public void completarReferencia(String textoReferencia) {
+		getEspera().waitElementByXpath(CAMPOREFERENCIA);
+		getDriver().findElement(By.xpath(CAMPOREFERENCIA)).clear();
+		getDriver().findElement(By.xpath(CAMPOREFERENCIA)).sendKeys(textoReferencia);
+	}
+
+//	public abstract void producirDocumento(String textoReferencia);
 }

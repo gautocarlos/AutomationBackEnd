@@ -42,4 +42,5 @@ public interface Constantes {
 	
 	public static final String PROCESOPRODUCCION = "//span[contains(text(),'El proceso de producción del documento se ha iniciado correctamente')]";
 	public static final String TDMSJBOXOK = "//td[contains(text(),'OK')]";
+	public static final String BOTONACEPTAR = "//td[contains(text(),'Aceptar')]";
 }

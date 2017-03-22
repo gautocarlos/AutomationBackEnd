@@ -71,7 +71,7 @@ public abstract class Documento implements Constantes {
 	}
 
 	/**
-	 * @throws Exception 
+	 * @throws Exception
 	 * 
 	 */
 	public void inicioDocumento() throws Exception {
@@ -82,12 +82,12 @@ public abstract class Documento implements Constantes {
 	/**
 	 * @param documentoElectronico
 	 * @param acronimoGEDO
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public void iniciarProduccionDeDocumento(String documentoElectronico, String acronimoGEDO) throws Exception {
 		getEspera().waitElementByXpath(documentoElectronico);
-		driver.findElement(By.xpath(documentoElectronico)).clear();
-		driver.findElement(By.xpath(documentoElectronico)).sendKeys(acronimoGEDO);
+		getDriver().findElement(By.xpath(documentoElectronico)).clear();
+		getDriver().findElement(By.xpath(documentoElectronico)).sendKeys(acronimoGEDO);
 	}
 
 	/**
@@ -98,8 +98,8 @@ public abstract class Documento implements Constantes {
 	}
 
 	/**
-	 * @throws Exception 
-	 *  
+	 * @throws Exception
+	 * 
 	 */
 	public void enviarAProducirUsuarioMismaReparticion() throws Exception {
 		clickByXPath(ENVIARAPRODUCIR);
@@ -160,6 +160,34 @@ public abstract class Documento implements Constantes {
 	 */
 	public void volverAlBuzonDeTareas() {
 		clickByXPath(VOLVERALBUZONDETAREAS);
+	}
+
+	/**
+	 * Presiona el botón de la funcionalidad enviar a revisar
+	 */
+	public void enviarARevisar() {
+		clickByXPath(ENVIARAREVISAR);
+	}
+
+	public void completarRevisorMensaje(String revisor, String mensaje) throws Exception {
+		String campoRevisor = "//tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr/td[5]/i/input";
+		// String usuarioSeleccionado = "//td[contains(text(),'NRuby ARuby')]";
+		// "//div[6]/table/tbody/tr/td[2]";
+		String usuarioSeleccionado = "td.z-comboitem-text";
+		getEspera().waitElementByXpath(campoRevisor);
+		getDriver().findElement(By.xpath(campoRevisor)).clear();
+		getDriver().findElement(By.xpath(campoRevisor)).sendKeys("");
+		getDriver().findElement(By.xpath(campoRevisor)).sendKeys(revisor);
+		getEspera().getWait();
+		getCapturarPantalla().capturarPantalla();
+		getDriver().findElement(By.cssSelector(usuarioSeleccionado)).click();
+		getDriver().findElement(By.xpath("//td/textarea")).clear();
+		getDriver().findElement(By.xpath("//td/textarea")).sendKeys(mensaje);
+		getCapturarPantalla().capturarPantalla();
+		getEspera().waitElementByXpath(BOTONACEPTAR);
+		clickByXPath(BOTONACEPTAR);
+		getEspera().getWait();
+		// getCapturarPantalla().capturarPantalla();
 	}
 
 	/**

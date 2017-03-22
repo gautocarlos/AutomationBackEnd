@@ -138,6 +138,40 @@ public class PruebasGEDO implements Constantes {
 	}
 
 	@Test
+	public void testGEDODocumentoLibreEnviarARevisarUsuarioMismaReparticion() throws Exception {
+		// Parametrizar o externalizar datos variables
+		String acronimoGEDO = "IF";
+		DocumentoLibre documentoLibre = new DocumentoLibre(getDriver(), RUTAARCHIVOSENTRADA);
+		String usuarioRevisorMismaRepaticion = "NRuby ARuby";
+		String textoReferencia = "PhantomJS - AUTOMATIZADO";
+		String archivoPuntoDoc = "GobTuc_Diseño Funcional-Expediente Electrónico.doc";
+		String mensaje = "Mensaje: PhantomJS - AUTOMATIZADO";
+		// Parametrizar o externalizar datos variables
+
+		try {
+			documentoLibre.inicioDocumento();
+			documentoLibre.iniciarProduccionDeDocumento(DOCUMENTOELECTRONICO, acronimoGEDO);
+			documentoLibre.producirloYoMismo();
+//			documentoLibre.getCapturarPantalla().capturarPantalla();
+			documentoLibre.producirDocumentoLibreImportarWord(textoReferencia, archivoPuntoDoc);
+			/* Esperar a que suba el archivo word */
+			documentoLibre.getEspera().getWait();
+//			documentoLibre.getCapturarPantalla().capturarPantalla();
+			documentoLibre.enviarARevisar();
+			documentoLibre.getEspera().getWait();
+			documentoLibre.getCapturarPantalla().capturarPantalla();
+			documentoLibre.completarRevisorMensaje(usuarioRevisorMismaRepaticion, mensaje);
+			documentoLibre.getEspera().getWait();
+			documentoLibre.getCapturarPantalla().capturarPantalla();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+
+	}
+
+	
+	//@Test
 	public void testGEDODocumentoLibreEnviarAProducirUsuarioMismaReparticion() throws Exception {
 		// Parametrizar o externalizar datos variables
 		String acronimoGEDO = "IF";
@@ -161,7 +195,7 @@ public class PruebasGEDO implements Constantes {
 
 	}
 
-	@Test
+	//@Test
 	public void testGEDODocumentoLibreEnviarAProducirUsuarioDistintaReparticion() throws Exception {
 		// Parametrizar o externalizar datos variables
 		String acronimoGEDO = "IF";

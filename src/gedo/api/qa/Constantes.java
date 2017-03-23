@@ -39,8 +39,14 @@ public interface Constantes {
 	 */
 	public static final String DISTINTAREPASI = "//tbody/tr/td[1]/span/table/tbody/tr[2]/td[2]";
 	public static final String DISTINTAREPANO = "//tbody/tr/td[3]/span/table/tbody/tr[2]/td[2]";
-	
+
 	public static final String PROCESOPRODUCCION = "//span[contains(text(),'El proceso de producción del documento se ha iniciado correctamente')]";
 	public static final String TDMSJBOXOK = "//td[contains(text(),'OK')]";
 	public static final String BOTONACEPTAR = "//td[contains(text(),'Aceptar')]";
+
+	/**/
+	public static final String TDZ_COMBOITEM_TEXT = "td.z-comboitem-text";
+	public static final String TD_TEXTAREA = "//td/textarea";
+	//
+	public static final String CAMPOREVISOR = "//tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr/td[5]/i/input";
 }

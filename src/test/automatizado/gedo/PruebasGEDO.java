@@ -12,7 +12,10 @@ import gedo.api.qa.DocumentoImportado;
 import gedo.api.qa.DocumentoLibre;
 import test.selenium.util.DriverPhantom;
 import test.selenium.util.IngresoLoginCas;
-
+/**
+ * TODO: Parametrizar o externalizar datos variables
+ * 
+ * */
 public class PruebasGEDO implements Constantes {
 	private WebDriver driver;
 	// private String url;
@@ -70,7 +73,7 @@ public class PruebasGEDO implements Constantes {
 	}
 
 	// Lógica de automatización
-	// @Test
+	@Test
 	public void testGEDODocumentoLibre() throws Exception {
 		// Parametrizar o externalizar datos variables
 		String acronimoGEDO = "IF";
@@ -103,7 +106,7 @@ public class PruebasGEDO implements Constantes {
 
 	}
 
-	// @Test
+	@Test
 	public void testGEDODocumentoImportado() throws Exception {
 		// Parametrizar o externalizar datos variables
 		String acronimoGEDO = "IMAUT";
@@ -152,11 +155,11 @@ public class PruebasGEDO implements Constantes {
 			documentoLibre.inicioDocumento();
 			documentoLibre.iniciarProduccionDeDocumento(DOCUMENTOELECTRONICO, acronimoGEDO);
 			documentoLibre.producirloYoMismo();
-//			documentoLibre.getCapturarPantalla().capturarPantalla();
+			// documentoLibre.getCapturarPantalla().capturarPantalla();
 			documentoLibre.producirDocumentoLibreImportarWord(textoReferencia, archivoPuntoDoc);
 			/* Esperar a que suba el archivo word */
 			documentoLibre.getEspera().getWait();
-//			documentoLibre.getCapturarPantalla().capturarPantalla();
+			// documentoLibre.getCapturarPantalla().capturarPantalla();
 			documentoLibre.enviarARevisar();
 			documentoLibre.getEspera().getWait();
 			documentoLibre.getCapturarPantalla().capturarPantalla();
@@ -170,10 +173,8 @@ public class PruebasGEDO implements Constantes {
 
 	}
 
-	
-	//@Test
+	@Test
 	public void testGEDODocumentoLibreEnviarAProducirUsuarioMismaReparticion() throws Exception {
-		// Parametrizar o externalizar datos variables
 		String acronimoGEDO = "IF";
 		DocumentoLibre documentoLibre = new DocumentoLibre(getDriver(), RUTAARCHIVOSENTRADA);
 		String mensajeParaProductor = "PhantomJS: testGEDODocumentoLibreEnviarAProducirUsuarioMismaReparticion.";
@@ -195,7 +196,7 @@ public class PruebasGEDO implements Constantes {
 
 	}
 
-	//@Test
+	@Test
 	public void testGEDODocumentoLibreEnviarAProducirUsuarioDistintaReparticion() throws Exception {
 		// Parametrizar o externalizar datos variables
 		String acronimoGEDO = "IF";

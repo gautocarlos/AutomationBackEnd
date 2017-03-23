@@ -170,19 +170,15 @@ public abstract class Documento implements Constantes {
 	}
 
 	public void completarRevisorMensaje(String revisor, String mensaje) throws Exception {
-		String campoRevisor = "//tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr/td[5]/i/input";
-		// String usuarioSeleccionado = "//td[contains(text(),'NRuby ARuby')]";
-		// "//div[6]/table/tbody/tr/td[2]";
-		String usuarioSeleccionado = "td.z-comboitem-text";
-		getEspera().waitElementByXpath(campoRevisor);
-		getDriver().findElement(By.xpath(campoRevisor)).clear();
-		getDriver().findElement(By.xpath(campoRevisor)).sendKeys("");
-		getDriver().findElement(By.xpath(campoRevisor)).sendKeys(revisor);
+		getEspera().waitElementByXpath(CAMPOREVISOR);
+		getDriver().findElement(By.xpath(CAMPOREVISOR)).clear();
+		getDriver().findElement(By.xpath(CAMPOREVISOR)).sendKeys("");
+		getDriver().findElement(By.xpath(CAMPOREVISOR)).sendKeys(revisor);
 		getEspera().getWait();
 		getCapturarPantalla().capturarPantalla();
-		getDriver().findElement(By.cssSelector(usuarioSeleccionado)).click();
-		getDriver().findElement(By.xpath("//td/textarea")).clear();
-		getDriver().findElement(By.xpath("//td/textarea")).sendKeys(mensaje);
+		getDriver().findElement(By.cssSelector(TDZ_COMBOITEM_TEXT)).click();
+		getDriver().findElement(By.xpath(TD_TEXTAREA)).clear();
+		getDriver().findElement(By.xpath(TD_TEXTAREA)).sendKeys(mensaje);
 		getCapturarPantalla().capturarPantalla();
 		getEspera().waitElementByXpath(BOTONACEPTAR);
 		clickByXPath(BOTONACEPTAR);

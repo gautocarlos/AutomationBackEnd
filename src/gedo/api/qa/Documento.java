@@ -1,7 +1,10 @@
 package gedo.api.qa;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import test.selenium.util.CapturarPantalla;
 import test.selenium.util.SeleniumWait;
@@ -88,6 +91,9 @@ public abstract class Documento implements Constantes {
 		getEspera().waitElementByXpath(documentoElectronico);
 		getDriver().findElement(By.xpath(documentoElectronico)).clear();
 		getDriver().findElement(By.xpath(documentoElectronico)).sendKeys(acronimoGEDO);
+		// Para forzar el fuera de foco del elemento y recalcule la pantalla
+		getDriver().findElement(By.xpath(DESCRIPCIONDELTIPODEDOCUMENTO)).click();
+		getEspera().getWait();
 	}
 
 	/**
@@ -240,6 +246,31 @@ public abstract class Documento implements Constantes {
 		driver.findElement(By.xpath(xpath)).click();
 	}
 
+	/**
+	 * @param xpath
+	 *            xpath del elemento a realizar click
+	 * @param indice
+	 *            se utiliza para el caso en el que con el mismo xpath relativo
+	 *            se obtiene más de un elemento, se realiza click sobre el
+	 *            elemento pasado por parámetro
+	 * @throws Exception
+	 *             "El índice recibido tiene que ser mayor o igual a 0"
+	 */
+	private void clickByXPath(String xpath, int indice) throws Exception {
+		try {
+			List<WebElement> elementos = driver.findElements(By.xpath(xpath));
+			if ((indice >= 0) && (elementos.size() != 0)) {
+				elementos.get(indice).click();
+			} else {
+				throw new Exception(
+						"El índice recibido es menor a 0 o la cantidad de elementos retornados para el xpath: " + xpath
+								+ " es 0");
+			}
+		} catch (Exception e) {
+			throw e;
+		}
+	}
+
 	public void completarReferencia(String textoReferencia) throws Exception {
 		getEspera().waitElementByXpath(CAMPOREFERENCIA);
 		getDriver().findElement(By.xpath(CAMPOREFERENCIA)).clear();
@@ -280,4 +311,47 @@ public abstract class Documento implements Constantes {
 	public void quieroEnviarUnCorreoAlReceptorDeLaTarea() {
 		driver.findElement(By.xpath(LABELQUIEROENVIARUNCORREOALRECEPTORDELATAREA)).click();
 	}
+
+	// Lógica CCOO
+
+	/**
+	 * Carga el/los destinatario/s de una CCOO
+	 * 
+	 * @throws Exception
+	 */
+	public void definirDestinatarioCCOO() throws Exception {
+		presionarBotonMasDestinatariosCCOO(INDICEBOTONMASDESTINATARIO);
+	}
+
+	/**
+	 * Carga el/los destinatario/s que irá/n en copia de una CCOO
+	 * 
+	 * @throws Exception
+	 */
+	public void definirDestinatarioCopiaCCOO() throws Exception {
+		presionarBotonMasDestinatariosCCOO(INDICEBOTONMASCOPIA);
+	}
+
+	/**
+	 * Carga el/los destinatario/s que irá/n en copia oculta de una CCOO
+	 * 
+	 * @throws Exception
+	 */
+	public void definirDestinatarioCopiaOcultaCCOO() throws Exception {
+		presionarBotonMasDestinatariosCCOO(INDICEBOTONMASCOPIAOCULTA);
+	}
+
+	/**
+	 * @throws Exception
+	 *             "El índice recibido tiene que ser mayor o igual a 0"
+	 * @see clickByXPath(String xpath, int indice)
+	 */
+	private void presionarBotonMasDestinatariosCCOO(int indice) throws Exception {
+		clickByXPath(BOTONMAS, indice);
+	}
+
+	public void definirDestinatarios() {
+		clickByXPath(DEFINIRDESTINATARIOS);
+	}
+
 }

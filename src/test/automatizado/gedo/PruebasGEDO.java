@@ -78,7 +78,39 @@ public class PruebasGEDO implements Constantes {
 		new IngresoLoginCas(getDriver(), URLGEDO, getUsuario(), getPassword());
 	}
 	// Lógica de automatización
+	@Test
+	public void testCCOODefinirDestinatarios() throws Exception {
+		// Parametrizar o externalizar datos variables
+		String nombreMetodo = "testCCOODefinirDestinatarios";
+		String acronimoGEDO = "SS86";
+		String textoReferencia = "PhantomJS - AUTOMATIZADO - " + nombreMetodo;
+		String archivoPuntoDoc = "GobTuc_Diseño Funcional-Expediente Electrónico.doc";
+		String usuarioFirmanterMismaRepaticion = "NRuby ARuby";
+		// String rutaArchivoPuntoDoc = RUTAARCHIVOSENTRADA + archivoPuntoDoc;
+		DocumentoLibre documentoLibre = new DocumentoLibre(getDriver(), RUTAARCHIVOSENTRADA);
+		documentoLibre.getCapturarPantalla().setPatron(nombreMetodo);
+		// Parametrizar o externalizar datos variables
 
+		try {
+			documentoLibre.inicioDocumento();
+			documentoLibre.iniciarProduccionDeDocumento(DOCUMENTOELECTRONICO, acronimoGEDO);
+			documentoLibre.quieroRecibirUnAvisoCuandoElDocumentoSeFirme();
+			documentoLibre.quieroEnviarUnCorreoAlReceptorDeLaTarea();
+			documentoLibre.getCapturarPantalla().capturarPantalla();
+			documentoLibre.definirDestinatarios();
+			documentoLibre.getEspera().getWait();
+			documentoLibre.getCapturarPantalla().capturarPantalla();
+			documentoLibre.definirDestinatarioCCOO();
+			documentoLibre.getCapturarPantalla().capturarPantalla();
+			documentoLibre.getEspera().getWait();
+			documentoLibre.getCapturarPantalla().capturarPantalla();
+		} catch (Exception e) {
+			e.printStackTrace();
+			documentoLibre.getCapturarPantalla().capturarPantalla();
+			throw e;
+		}
+
+	}
 	@Test
 	public void testGEDOEnviarAFirmarUsuarioMismaReparticion() throws Exception {
 		// Parametrizar o externalizar datos variables
@@ -107,6 +139,7 @@ public class PruebasGEDO implements Constantes {
 			documentoLibre.enviarAFirmarUsuarioMismaReparticion(usuarioFirmanterMismaRepaticion);
 		} catch (Exception e) {
 			e.printStackTrace();
+			documentoLibre.getCapturarPantalla().capturarPantalla();
 			throw e;
 		}
 
@@ -140,6 +173,7 @@ public class PruebasGEDO implements Constantes {
 			documentoLibre.enviarAFirmarUsuarioDistintaReparticion(usuarioFirmanterDistintaRepaticion);
 		} catch (Exception e) {
 			e.printStackTrace();
+			documentoLibre.getCapturarPantalla().capturarPantalla();
 			throw e;
 		}
 
@@ -150,9 +184,9 @@ public class PruebasGEDO implements Constantes {
 	public void testGEDOAvisoDeFirma() throws Exception {
 		// Parametrizar o externalizar datos variables
 		String nombreMetodo = "testGEODAvisoDeFirma";
-		String acronimoGEDO = "IF";
-		String textoReferencia = "PhantomJS - AUTOMATIZADO - testGEODAvisoDeFirma";
-		String archivoPuntoDoc = "GobTuc_Diseño Funcional-Expediente Electrónico.doc";
+//		String acronimoGEDO = "IF";
+//		String textoReferencia = "PhantomJS - AUTOMATIZADO - testGEODAvisoDeFirma";
+//		String archivoPuntoDoc = "GobTuc_Diseño Funcional-Expediente Electrónico.doc";
 		// String rutaArchivoPuntoDoc = RUTAARCHIVOSENTRADA + archivoPuntoDoc;
 		DocumentoLibre documentoLibre = new DocumentoLibre(getDriver(), RUTAARCHIVOSENTRADA);
 		documentoLibre.getCapturarPantalla().setPatron(nombreMetodo);
@@ -164,7 +198,9 @@ public class PruebasGEDO implements Constantes {
 			documentoLibre.quieroEnviarUnCorreoAlReceptorDeLaTarea();
 			documentoLibre.getCapturarPantalla().capturarPantalla();
 		} catch (Exception e) {
+			documentoLibre.getCapturarPantalla().capturarPantalla();
 			e.printStackTrace();
+			throw e;
 		}
 
 	}
@@ -198,6 +234,7 @@ public class PruebasGEDO implements Constantes {
 			documentoLibre.getCapturarPantalla().capturarPantalla();
 		} catch (Exception e) {
 			e.printStackTrace();
+			documentoLibre.getCapturarPantalla().capturarPantalla();
 			throw e;
 		}
 
@@ -232,6 +269,7 @@ public class PruebasGEDO implements Constantes {
 			documentoImportado.getCapturarPantalla().capturarPantalla();
 		} catch (Exception e) {
 			e.printStackTrace();
+			documentoImportado.getCapturarPantalla().capturarPantalla();
 			throw e;
 		}
 
@@ -265,6 +303,7 @@ public class PruebasGEDO implements Constantes {
 			documentoLibre.getCapturarPantalla().capturarPantalla();
 		} catch (Exception e) {
 			e.printStackTrace();
+			documentoLibre.getCapturarPantalla().capturarPantalla();
 			throw e;
 		}
 
@@ -288,6 +327,7 @@ public class PruebasGEDO implements Constantes {
 			documentoLibre.getCapturarPantalla().capturarPantalla();
 		} catch (Exception e) {
 			e.printStackTrace();
+			documentoLibre.getCapturarPantalla().capturarPantalla();
 			throw e;
 		}
 
@@ -312,6 +352,7 @@ public class PruebasGEDO implements Constantes {
 			documentoLibre.getCapturarPantalla().capturarPantalla();
 		} catch (Exception e) {
 			e.printStackTrace();
+			documentoLibre.getCapturarPantalla().capturarPantalla();
 			throw e;
 		}
 

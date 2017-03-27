@@ -4,6 +4,8 @@ package gedo.api.qa;
  * @autor Carlos Gauto
  **/
 public interface Constantes {
+	// Span de la pantalla De la Descripción del tipo de trámite a iniciar
+	public static final String DESCRIPCIONDELTIPODEDOCUMENTO = "//span[contains(text(),'Descripción del tipo de documento')]";	
 	public static final String GEDOLIBRE_ = "GEDOLIBRE_";
 	public static final String GEDOIMPORTADO_ = "GEDOIMPORTADO_";
 	public static final String GEDOTEMPLATE_ = "GEDOTEMPLATE_";
@@ -14,6 +16,7 @@ public interface Constantes {
 	public static final String PRODUCIRLOYOMISMO = "//img[contains(@src,'/gedo-web/imagenes/ProducirloYoMismo.png')]";
 	public static final String ENVIARAPRODUCIR = "//img[contains(@src,'/gedo-web/imagenes/EnviarAProducir.png')]";
 	public static final String ENVIARAFIRMAR = "//img[contains(@src,'/gedo-web/imagenes/EnviarAFirmar.png')]";
+	public static final String DEFINIRDESTINATARIOS = "//img[contains(@src,'/gedo-web/imagenes/definirDestinatarios.png')]";
 	public static final String CANCELAR = "//img[contains(@src,'/gedo-web/imagenes/Cancelar.png')]";
 	public static final String ARCHIVOSDETRABAJO = "//img[contains(@src,'/gedo-web/imagenes/ArchivosDeTrabajo.png')]";
 	public static final String ENVIARAREVISAR = "//img[contains(@src,'/gedo-web/imagenes/EnviarARevisar.png')]";
@@ -53,9 +56,14 @@ public interface Constantes {
 	public static final String CAMPOREVISOR = "//tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr/td[5]/i/input";
 	public static final String CAMPOPRODUCTOR = "//div/i/input";
 	public static final String TEXTAREA = "//textarea";
-//Enviar a firmar documento
+	// Enviar a firmar documento
 	public static final String CAMPOFIRMANTE = "//tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr/td[5]/i/input";
 	public static final String LABELQUIEROAVISOCUANDOFIRME = "//label[contains(text(),'Quiero recibir un aviso cuando el documento se firme.')]";
 	public static final String LABELQUIEROENVIARUNCORREOALRECEPTORDELATAREA = "//label[contains(text(),'Quiero enviar un correo electrónico al receptor de la tarea.')]";
-	
+	// Destinatario de una CCOO
+	public static final String CAMPODESTINATARIO = "//tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr/td[5]/i/input";
+	public static final String BOTONMAS = "//img[contains(@src,'/gedo-web/imagenes/mas.png')]";
+	public static final int INDICEBOTONMASDESTINATARIO = 0;
+	public static final int INDICEBOTONMASCOPIA = 1;
+	public static final int INDICEBOTONMASCOPIAOCULTA = 2;
 }

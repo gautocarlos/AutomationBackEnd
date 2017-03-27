@@ -14,7 +14,12 @@ import test.selenium.util.DriverPhantom;
 import test.selenium.util.IngresoLoginCas;
 import test.selenium.util.SeleniumWait;
 
-public class GedoDocumentoLibre implements Constantes{
+/**
+ * @deprecated Clase utilizada para primeras pruebas que quedó en desuso. varios
+ *             de los métodos utilizados aquí se encuentran extraídos y
+ *             factorizados en otras clases.
+ */
+public class GedoDocumentoLibre implements Constantes {
 	private WebDriver driver;
 	// private String url;
 	// private String usuario;
@@ -132,7 +137,7 @@ public class GedoDocumentoLibre implements Constantes{
 	 * @param campoReferencia
 	 * @param textoReferencia
 	 * @param rutaArchivoPuntoDoc
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	private void producirDocumentoLibreImportarWord(String campoReferencia, String textoReferencia,
 			String rutaArchivoPuntoDoc) throws Exception {
@@ -180,7 +185,7 @@ public class GedoDocumentoLibre implements Constantes{
 	/**
 	 * @param documentoElectronico
 	 * @param acronimoGEDO
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	private void iniciarProduccionDeDocumentoLibre(String documentoElectronico, String acronimoGEDO) throws Exception {
 		getEspera().waitElementByXpath(documentoElectronico);
@@ -191,7 +196,7 @@ public class GedoDocumentoLibre implements Constantes{
 
 	/**
 	 * @param inicioDocumento
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	private void inicioDocumento(String inicioDocumento) throws Exception {
 		getEspera().waitElementByXpath(inicioDocumento);

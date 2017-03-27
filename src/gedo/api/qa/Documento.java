@@ -169,6 +169,20 @@ public abstract class Documento implements Constantes {
 		clickByXPath(ENVIARAREVISAR);
 	}
 
+	/**
+	 * Presiona el botón de la funcionalidad enviar a firmar
+	 */
+	public void enviarAFirmar() {
+		clickByXPath(ENVIARAFIRMAR);
+	}
+
+	/**
+	 * TODO - Renombrar método para que incluya la acción de presionar el botón
+	 * de enviar a revisar
+	 * 
+	 * @see - Método: enviarAFirmarUsuarioMismaReparticion(String firmante)
+	 * 
+	 */
 	public void completarRevisorMensaje(String revisor, String mensaje) throws Exception {
 		getEspera().waitElementByXpath(CAMPOREVISOR);
 		getDriver().findElement(By.xpath(CAMPOREVISOR)).clear();
@@ -183,6 +197,39 @@ public abstract class Documento implements Constantes {
 		getEspera().waitElementByXpath(BOTONACEPTAR);
 		clickByXPath(BOTONACEPTAR);
 		getEspera().getWait();
+		// getCapturarPantalla().capturarPantalla();
+	}
+
+	public void enviarAFirmarUsuarioMismaReparticion(String firmante) throws Exception {
+		clickByXPath(ENVIARAFIRMAR);
+		getEspera().waitElementByXpath(CAMPOFIRMANTE);
+		getDriver().findElement(By.xpath(CAMPOFIRMANTE)).clear();
+		getDriver().findElement(By.xpath(CAMPOFIRMANTE)).sendKeys("");
+		getDriver().findElement(By.xpath(CAMPOFIRMANTE)).sendKeys(firmante);
+		getEspera().getWait();
+		getCapturarPantalla().capturarPantalla();
+		getDriver().findElement(By.cssSelector(TDZ_COMBOITEM_TEXT)).click();
+		getCapturarPantalla().capturarPantalla();
+		getEspera().waitElementByXpath(BOTONACEPTAR);
+		clickByXPath(BOTONACEPTAR);
+		getEspera().getWait();
+		// getCapturarPantalla().capturarPantalla();
+	}
+
+	public void enviarAFirmarUsuarioDistintaReparticion(String firmante) throws Exception {
+		clickByXPath(ENVIARAFIRMAR);
+		getEspera().waitElementByXpath(CAMPOFIRMANTE);
+		getDriver().findElement(By.xpath(CAMPOFIRMANTE)).clear();
+		getDriver().findElement(By.xpath(CAMPOFIRMANTE)).sendKeys("");
+		getDriver().findElement(By.xpath(CAMPOFIRMANTE)).sendKeys(firmante);
+		getEspera().getWait();
+		getCapturarPantalla().capturarPantalla();
+		getDriver().findElement(By.cssSelector(TDZ_COMBOITEM_TEXT)).click();
+		getCapturarPantalla().capturarPantalla();
+		getEspera().waitElementByXpath(BOTONACEPTAR);
+		clickByXPath(BOTONACEPTAR);
+		getEspera().getWait();
+		aceptarMensajeUsuarioDistintaReparticion();
 		// getCapturarPantalla().capturarPantalla();
 	}
 
@@ -205,13 +252,32 @@ public abstract class Documento implements Constantes {
 	 *            válido para producir el documento.
 	 * @param mensajeParaProductor
 	 *            - Se trata de un mensaje a enviar al productor de la tarea.
+	 * @see - Esta lógica tiene un problema a resolver: Si existe más de un
+	 *      usuario con el mismo nombre y apellido no podría distinguir entre
+	 *      ambos
 	 */
 	public void enviarAProducirTareaUsuario(String usuarioProductor, String mensajeParaProductor) {
-		driver.findElement(By.xpath("//textarea")).clear();
-		driver.findElement(By.xpath("//textarea")).sendKeys(mensajeParaProductor);
-		driver.findElement(By.xpath("//div/i/input")).clear();
-		driver.findElement(By.xpath("//div/i/input")).sendKeys("");
-		driver.findElement(By.xpath("//div/i/input")).sendKeys(usuarioProductor);
-		driver.findElement(By.xpath("//body/div[4]/table/tbody/tr/td[2]")).click();
+		driver.findElement(By.xpath(TEXTAREA)).clear();
+		driver.findElement(By.xpath(TEXTAREA)).sendKeys(mensajeParaProductor);
+		driver.findElement(By.xpath(CAMPOPRODUCTOR)).clear();
+		driver.findElement(By.xpath(CAMPOPRODUCTOR)).sendKeys("");
+		driver.findElement(By.xpath(CAMPOPRODUCTOR)).sendKeys(usuarioProductor);
+		driver.findElement(By.cssSelector(TDZ_COMBOITEM_TEXT)).click();
+	}
+
+	/**
+	 * Realiza click en la opción de recibir un aviso ante la firma de un
+	 * documento.-
+	 * 
+	 * TODO - Crear lógica para los tipos de documentos que no permiten esta
+	 * opción
+	 * 
+	 */
+	public void quieroRecibirUnAvisoCuandoElDocumentoSeFirme() {
+		driver.findElement(By.xpath(LABELQUIEROAVISOCUANDOFIRME)).click();
+	}
+
+	public void quieroEnviarUnCorreoAlReceptorDeLaTarea() {
+		driver.findElement(By.xpath(LABELQUIEROENVIARUNCORREOALRECEPTORDELATAREA)).click();
 	}
 }

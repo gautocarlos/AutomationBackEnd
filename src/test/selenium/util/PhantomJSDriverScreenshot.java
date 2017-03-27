@@ -12,7 +12,9 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 //import org.openqa.selenium.phantomjs.PhantomJSDriver;
 //import org.openqa.selenium.remote.Augmenter;
-
+/**
+ * @deprecated
+ * */
 public class PhantomJSDriverScreenshot {
 	private WebDriver driver;
 	

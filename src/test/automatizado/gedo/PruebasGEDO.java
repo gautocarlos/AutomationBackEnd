@@ -12,10 +12,16 @@ import gedo.api.qa.DocumentoImportado;
 import gedo.api.qa.DocumentoLibre;
 import test.selenium.util.DriverPhantom;
 import test.selenium.util.IngresoLoginCas;
+
 /**
- * TODO: Parametrizar o externalizar datos variables
+ * TODO: Parametrizar o externalizar datos variables.-
+ * ---------------------------------------------------------------------------
+ * TODO Crear una clase que resuelva la posibilidad de obtener el nombre del
+ * método que se ejecuta, para pasar dicho nombre como patrón de las capturas a
+ * realizar. Lo que facilitaría el seguimiento de lo que sucede en cada
+ * ejecución.
  * 
- * */
+ */
 public class PruebasGEDO implements Constantes {
 	private WebDriver driver;
 	// private String url;
@@ -71,13 +77,103 @@ public class PruebasGEDO implements Constantes {
 	public void setUp() throws Exception {
 		new IngresoLoginCas(getDriver(), URLGEDO, getUsuario(), getPassword());
 	}
+	// Lógica de automatización
+
+	@Test
+	public void testGEDOEnviarAFirmarUsuarioMismaReparticion() throws Exception {
+		// Parametrizar o externalizar datos variables
+		String nombreMetodo = "testGEDOEnviarAFirmar";
+		String acronimoGEDO = "IF";
+		String textoReferencia = "PhantomJS - AUTOMATIZADO - testGEDOEnviarAFirmar";
+		String archivoPuntoDoc = "GobTuc_Diseño Funcional-Expediente Electrónico.doc";
+		String usuarioFirmanterMismaRepaticion = "NRuby ARuby";
+		// String rutaArchivoPuntoDoc = RUTAARCHIVOSENTRADA + archivoPuntoDoc;
+		DocumentoLibre documentoLibre = new DocumentoLibre(getDriver(), RUTAARCHIVOSENTRADA);
+		documentoLibre.getCapturarPantalla().setPatron(nombreMetodo);
+		// Parametrizar o externalizar datos variables
+
+		try {
+			documentoLibre.inicioDocumento();
+			documentoLibre.quieroRecibirUnAvisoCuandoElDocumentoSeFirme();
+			documentoLibre.quieroEnviarUnCorreoAlReceptorDeLaTarea();
+			documentoLibre.getCapturarPantalla().capturarPantalla();
+			documentoLibre.iniciarProduccionDeDocumento(DOCUMENTOELECTRONICO, acronimoGEDO);
+			documentoLibre.producirloYoMismo();
+			documentoLibre.getCapturarPantalla().capturarPantalla();
+			documentoLibre.producirDocumentoLibreImportarWord(textoReferencia, archivoPuntoDoc);
+			/* Esperar a que suba el archivo word */
+			documentoLibre.getEspera().getWait();
+			documentoLibre.getCapturarPantalla().capturarPantalla();
+			documentoLibre.enviarAFirmarUsuarioMismaReparticion(usuarioFirmanterMismaRepaticion);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+
+	}
+
+	@Test
+	public void testGEDOEnviarAFirmarUsuarioDistintaReparticion() throws Exception {
+		// Parametrizar o externalizar datos variables
+		String nombreMetodo = "testGEDOEnviarAFirmarUsuarioDistintaReparticion";
+		String acronimoGEDO = "IF";
+		String textoReferencia = "PhantomJS - AUTOMATIZADO " + nombreMetodo;
+		String archivoPuntoDoc = "GobTuc_Diseño Funcional-Expediente Electrónico.doc";
+		String usuarioFirmanterDistintaRepaticion = "Carlos Gauto";
+		// String rutaArchivoPuntoDoc = RUTAARCHIVOSENTRADA + archivoPuntoDoc;
+		DocumentoLibre documentoLibre = new DocumentoLibre(getDriver(), RUTAARCHIVOSENTRADA);
+		documentoLibre.getCapturarPantalla().setPatron(nombreMetodo);
+		// Parametrizar o externalizar datos variables
+
+		try {
+			documentoLibre.inicioDocumento();
+			documentoLibre.quieroRecibirUnAvisoCuandoElDocumentoSeFirme();
+			documentoLibre.quieroEnviarUnCorreoAlReceptorDeLaTarea();
+			documentoLibre.getCapturarPantalla().capturarPantalla();
+			documentoLibre.iniciarProduccionDeDocumento(DOCUMENTOELECTRONICO, acronimoGEDO);
+			documentoLibre.producirloYoMismo();
+			documentoLibre.getCapturarPantalla().capturarPantalla();
+			documentoLibre.producirDocumentoLibreImportarWord(textoReferencia, archivoPuntoDoc);
+			/* Esperar a que suba el archivo word */
+			documentoLibre.getEspera().getWait();
+			documentoLibre.getCapturarPantalla().capturarPantalla();
+			documentoLibre.enviarAFirmarUsuarioDistintaReparticion(usuarioFirmanterDistintaRepaticion);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+
+	}
 
 	// Lógica de automatización
+	@Test
+	public void testGEDOAvisoDeFirma() throws Exception {
+		// Parametrizar o externalizar datos variables
+		String nombreMetodo = "testGEODAvisoDeFirma";
+		String acronimoGEDO = "IF";
+		String textoReferencia = "PhantomJS - AUTOMATIZADO - testGEODAvisoDeFirma";
+		String archivoPuntoDoc = "GobTuc_Diseño Funcional-Expediente Electrónico.doc";
+		// String rutaArchivoPuntoDoc = RUTAARCHIVOSENTRADA + archivoPuntoDoc;
+		DocumentoLibre documentoLibre = new DocumentoLibre(getDriver(), RUTAARCHIVOSENTRADA);
+		documentoLibre.getCapturarPantalla().setPatron(nombreMetodo);
+		// Parametrizar o externalizar datos variables
+
+		try {
+			documentoLibre.inicioDocumento();
+			documentoLibre.quieroRecibirUnAvisoCuandoElDocumentoSeFirme();
+			documentoLibre.quieroEnviarUnCorreoAlReceptorDeLaTarea();
+			documentoLibre.getCapturarPantalla().capturarPantalla();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
 	@Test
 	public void testGEDODocumentoLibre() throws Exception {
 		// Parametrizar o externalizar datos variables
 		String acronimoGEDO = "IF";
-		String textoReferencia = "PhantomJS - AUTOMATIZADO";
+		String textoReferencia = "PhantomJS - AUTOMATIZADO - testGEDODocumentoLibre";
 		String archivoPuntoDoc = "GobTuc_Diseño Funcional-Expediente Electrónico.doc";
 		// String rutaArchivoPuntoDoc = RUTAARCHIVOSENTRADA + archivoPuntoDoc;
 		DocumentoLibre documentoLibre = new DocumentoLibre(getDriver(), RUTAARCHIVOSENTRADA);
@@ -102,6 +198,7 @@ public class PruebasGEDO implements Constantes {
 			documentoLibre.getCapturarPantalla().capturarPantalla();
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 
 	}
@@ -110,7 +207,7 @@ public class PruebasGEDO implements Constantes {
 	public void testGEDODocumentoImportado() throws Exception {
 		// Parametrizar o externalizar datos variables
 		String acronimoGEDO = "IMAUT";
-		String textoReferencia = "PhantomJS - AUTOMATIZADO - Importado";
+		String textoReferencia = "PhantomJS - AUTOMATIZADO - Importado - testGEDODocumentoImportado";
 		String archivoImportado = "archivoImportado.png";
 		// String rutaArchivoPuntoDoc = RUTAARCHIVOSENTRADA + archivoPuntoDoc;
 		DocumentoImportado documentoImportado = new DocumentoImportado(getDriver(), RUTAARCHIVOSENTRADA);
@@ -146,7 +243,7 @@ public class PruebasGEDO implements Constantes {
 		String acronimoGEDO = "IF";
 		DocumentoLibre documentoLibre = new DocumentoLibre(getDriver(), RUTAARCHIVOSENTRADA);
 		String usuarioRevisorMismaRepaticion = "NRuby ARuby";
-		String textoReferencia = "PhantomJS - AUTOMATIZADO";
+		String textoReferencia = "PhantomJS - AUTOMATIZADO - testGEDODocumentoLibreEnviarARevisarUsuarioMismaReparticion";
 		String archivoPuntoDoc = "GobTuc_Diseño Funcional-Expediente Electrónico.doc";
 		String mensaje = "Mensaje: PhantomJS - AUTOMATIZADO";
 		// Parametrizar o externalizar datos variables

@@ -13,6 +13,7 @@ public interface Constantes {
 	public static final String DOCUMENTOELECTRONICO = "//td[3]/i/input";
 	public static final String PRODUCIRLOYOMISMO = "//img[contains(@src,'/gedo-web/imagenes/ProducirloYoMismo.png')]";
 	public static final String ENVIARAPRODUCIR = "//img[contains(@src,'/gedo-web/imagenes/EnviarAProducir.png')]";
+	public static final String ENVIARAFIRMAR = "//img[contains(@src,'/gedo-web/imagenes/EnviarAFirmar.png')]";
 	public static final String CANCELAR = "//img[contains(@src,'/gedo-web/imagenes/Cancelar.png')]";
 	public static final String ARCHIVOSDETRABAJO = "//img[contains(@src,'/gedo-web/imagenes/ArchivosDeTrabajo.png')]";
 	public static final String ENVIARAREVISAR = "//img[contains(@src,'/gedo-web/imagenes/EnviarARevisar.png')]";
@@ -43,10 +44,18 @@ public interface Constantes {
 	public static final String PROCESOPRODUCCION = "//span[contains(text(),'El proceso de producción del documento se ha iniciado correctamente')]";
 	public static final String TDMSJBOXOK = "//td[contains(text(),'OK')]";
 	public static final String BOTONACEPTAR = "//td[contains(text(),'Aceptar')]";
+	public static final String BOTONSI = "//td[contains(text(),'Sí')]";
 
 	/**/
 	public static final String TDZ_COMBOITEM_TEXT = "td.z-comboitem-text";
 	public static final String TD_TEXTAREA = "//td/textarea";
 	//
 	public static final String CAMPOREVISOR = "//tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr/td[5]/i/input";
+	public static final String CAMPOPRODUCTOR = "//div/i/input";
+	public static final String TEXTAREA = "//textarea";
+//Enviar a firmar documento
+	public static final String CAMPOFIRMANTE = "//tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr/td[5]/i/input";
+	public static final String LABELQUIEROAVISOCUANDOFIRME = "//label[contains(text(),'Quiero recibir un aviso cuando el documento se firme.')]";
+	public static final String LABELQUIEROENVIARUNCORREOALRECEPTORDELATAREA = "//label[contains(text(),'Quiero enviar un correo electrónico al receptor de la tarea.')]";
+	
 }

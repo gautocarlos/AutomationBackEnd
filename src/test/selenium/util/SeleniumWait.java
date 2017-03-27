@@ -17,7 +17,9 @@ public class SeleniumWait {
 	private WebDriver getDriver() {
 		return driver;
 	}
-
+	/**
+	 * Realiza una espera genérica de 3000ms.
+	 */
 	public void getWait() {
 		try {
 			System.out.println("Inicia espera.");
@@ -29,22 +31,30 @@ public class SeleniumWait {
 
 	}
 
+	/**
+	 * @param xpath
+	 *            De un elemento html.
+	 * @throws Exception
+	 *             En caso de que no exista el elemento del xpath al 3 intento
+	 *             de localización del mismo.
+	 */
 	public void waitElementByXpath(String xpath) throws Exception {
-
-		for (int second = 0;; second++) {
-			if (second >= 60)
-				new Exception("Timeout: NO existe el elemento con xpath: " + xpath);
+		for (int intentos = 1;; intentos++) {
+			// Se reduce la espera de 60 3 intentos
+			if (intentos > 3)
+				throw new Exception("Timeout: NO apareció un elemento con xpath: " + xpath);
 			try {
 				if (isElementPresent(By.xpath(xpath))) {
 					System.out.println("Existe el elemento con xpath: " + xpath);
-					break;
+					// break;
+					return;
 				}
 				Thread.sleep(1000);
+				System.out.println("Fin Espera: Intento: " + intentos);
 			} catch (Exception e) {
 				e.printStackTrace();
 				throw e;
 			}
-
 		}
 	}
 

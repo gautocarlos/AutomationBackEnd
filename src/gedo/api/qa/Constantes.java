@@ -63,6 +63,7 @@ public interface Constantes {
 	// Destinatario de una CCOO
 	public static final String CAMPODESTINATARIO = "//tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr/td[5]/i/input";
 	public static final String BOTONMAS = "//img[contains(@src,'/gedo-web/imagenes/mas.png')]";
+	public static final String SELECCIONARUSUARIODESTINATARIO = "//tbody/tr/td/table/tbody/tr[3]/td/i/input";	
 	public static final int INDICEBOTONMASDESTINATARIO = 0;
 	public static final int INDICEBOTONMASCOPIA = 1;
 	public static final int INDICEBOTONMASCOPIAOCULTA = 2;

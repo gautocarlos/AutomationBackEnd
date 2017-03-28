@@ -1,7 +1,5 @@
 package test.selenium.util;
 
-import static org.junit.Assert.fail;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -17,6 +15,7 @@ public class SeleniumWait {
 	private WebDriver getDriver() {
 		return driver;
 	}
+
 	/**
 	 * Realiza una espera genérica de 3000ms.
 	 */
@@ -67,23 +66,27 @@ public class SeleniumWait {
 		}
 	}
 
-	public void waitElementById(String id) {
-		for (int second = 0;; second++) {
-			if (second >= 60)
-				fail("timeout");
+	/**
+	 * @throws Exception 
+	 * */
+	public void waitElementById(String id) throws Exception {
+		for (int intentos = 1;; intentos++) {
+			// Se reduce la espera de 60 3 intentos
+			if (intentos > 3)
+				throw new Exception("Timeout: NO apareció un elemento con id: " + id);
 			try {
 				if (isElementPresent(By.id(id))) {
 					System.out.println("Existe el elemento con id: " + id);
-					break;
+					// break;
+					return;
 				}
 				Thread.sleep(1000);
+				System.out.println("Fin Espera: Intento: " + intentos);
 			} catch (Exception e) {
-				System.out.println("NO existe el elemento con id: " + id);
-				System.out.println(e.getMessage());
+				e.printStackTrace();
+				throw e;
 			}
-
 		}
-
 	}
 
 }

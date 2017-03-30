@@ -274,7 +274,7 @@ public abstract class Documento implements Constantes {
 			List<WebElement> elementos = driver.findElements(By.xpath(xpath));
 			int cantidadElementos = elementos.size();
 			// validar por el límite máximo
-			if ((indice >= 0) && (cantidadElementos > 1) && (cantidadElementos > indice)) {
+			if ((indice >= 0) && (cantidadElementos > 0) && (cantidadElementos > indice)) {
 				elementos.get(indice).click();
 				// return elementos.get(indice);
 			} else {
@@ -296,36 +296,36 @@ public abstract class Documento implements Constantes {
 		driver.findElement(By.xpath(xpath)).click();
 	}
 
-	/**
-	 * @param xpath
-	 *            xpath del elemento a realizar click
-	 * @param indice
-	 *            se utiliza para el caso en el que con el mismo xpath relativo
-	 *            se obtiene más de un elemento, se realiza click sobre el
-	 *            elemento pasado por parámetro
-	 * @throws Exception
-	 *             "El índice recibido tiene que ser mayor o igual a 0"
-	 *             -----------------------------------------------------------------------------
-	 *             TODO - Externalizar en otra clase ya que se trata de un
-	 *             comportamiento estándar que será utilizado en cualquier
-	 *             módulo
-	 */
-	private WebElement obtenerElementoPorXPathPorIndice(String xpath, int indice) throws Exception {
-		try {
-			List<WebElement> elementos = driver.findElements(By.xpath(xpath));
-			int cantidadElementos = elementos.size();
-			// validar por el límite máximo
-			if ((indice >= 0) && (cantidadElementos > 1) && (cantidadElementos < indice)) {
-				return elementos.get(indice);
-			} else {
-				throw new Exception("El índice: " + indice + " recibido es menor a 0 o la cantidad de elementos: "
-						+ cantidadElementos + " retornados para el xpath: " + xpath
-						+ " es 0 o supera el límite de elementos");
-			}
-		} catch (Exception e) {
-			throw e;
-		}
-	}
+//	/**
+//	 * @param xpath
+//	 *            xpath del elemento a realizar click
+//	 * @param indice
+//	 *            se utiliza para el caso en el que con el mismo xpath relativo
+//	 *            se obtiene más de un elemento, se realiza click sobre el
+//	 *            elemento pasado por parámetro
+//	 * @throws Exception
+//	 *             "El índice recibido tiene que ser mayor o igual a 0"
+//	 *             -----------------------------------------------------------------------------
+//	 *             TODO - Externalizar en otra clase ya que se trata de un
+//	 *             comportamiento estándar que será utilizado en cualquier
+//	 *             módulo
+//	 */
+//	private WebElement obtenerElementoPorXPathPorIndice(String xpath, int indice) throws Exception {
+//		try {
+//			List<WebElement> elementos = driver.findElements(By.xpath(xpath));
+//			int cantidadElementos = elementos.size();
+//			// validar por el límite máximo
+//			if ((indice >= 0) && (cantidadElementos > 1) && (cantidadElementos < indice)) {
+//				return elementos.get(indice);
+//			} else {
+//				throw new Exception("El índice: " + indice + " recibido es menor a 0 o la cantidad de elementos: "
+//						+ cantidadElementos + " retornados para el xpath: " + xpath
+//						+ " es 0 o supera el límite de elementos");
+//			}
+//		} catch (Exception e) {
+//			throw e;
+//		}
+//	}
 
 	public void completarReferencia(String textoReferencia) throws Exception {
 		getEspera().waitElementByXpath(CAMPOREFERENCIA);
@@ -396,11 +396,16 @@ public abstract class Documento implements Constantes {
 				// Extraer/Factorizar
 				getEspera().getWait();
 				getCapturarPantalla().capturarPantalla();
-
-				clickByXPath(BOTONACEPTAR);
+				//Aceptar del popup Seleccionar usuario
+				/**
+				 * TODO Eliminar hardcode y crear constante
+				 * */
+				clickByXPath(BOTONACEPTAR, 1);
 				getEspera().getWait();
 				getCapturarPantalla().capturarPantalla();
 			}
+			//Aceptar del popup de Definir Destinatarios
+			clickByXPath(BOTONACEPTAR, 0);
 		}
 	}
 
@@ -430,17 +435,25 @@ public abstract class Documento implements Constantes {
 	private void presionarBotonMasDestinatariosCCOO(int indice) throws Exception {
 		clickByXPath(BOTONMAS, indice);
 	}
-
-	/**
-	 * @return
-	 * @throws Exception
-	 *             "El índice recibido tiene que ser mayor o igual a 0"
-	 * @see clickByXPath(String xpath, int indice), ver si se tiene que deprecar
-	 *      o es de utilidad
-	 */
-	private WebElement obtenerBotonMasDestinatariosCCOO(int indice) throws Exception {
-		return obtenerElementoPorXPathPorIndice(BOTONMAS, indice);
-	}
+//	/**
+//	 * @throws Exception
+//	 *             "El índice recibido tiene que ser mayor o igual a 0"
+//	 * @see clickByXPath(String xpath, int indice)
+//	 */
+//	private void presionarBotonAceptar(int indice) throws Exception {
+//		clickByXPath(BOTONACEPTAR, indice);
+//	}
+//	
+//	/**
+//	 * @return
+//	 * @throws Exception
+//	 *             "El índice recibido tiene que ser mayor o igual a 0"
+//	 * @see clickByXPath(String xpath, int indice), ver si se tiene que deprecar
+//	 *      o es de utilidad
+//	 */
+//	private WebElement obtenerBotonMasDestinatariosCCOO(int indice) throws Exception {
+//		return obtenerElementoPorXPathPorIndice(BOTONMAS, indice);
+//	}
 
 	public void definirDestinatarios() {
 		clickByXPath(DEFINIRDESTINATARIOS);

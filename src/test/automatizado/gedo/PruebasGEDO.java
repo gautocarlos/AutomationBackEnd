@@ -75,17 +75,20 @@ public class PruebasGEDO implements Constantes {
 
 	@Before
 	public void setUp() throws Exception {
-		new IngresoLoginCas(getDriver(), URLGEDO, getUsuario(), getPassword());
+		new IngresoLoginCas(getDriver(), URLGEDOQA, getUsuario(), getPassword());
 	}
 	// Lógica de automatización
 	@Test
-	public void testCCOODefinirDestinatarios() throws Exception {
+	public void testCCOODefinirDestinatariosEnviarFirmarUsuarioMismaRepaticion() throws Exception {
 		// Parametrizar o externalizar datos variables
-		String nombreMetodo = "testCCOODefinirDestinatarios";
+		String nombreMetodo = "testCCOODefinirDestinatariosEnviarFirmarUsuarioMismaRepaticion";
 		String acronimoGEDO = "SS86";
 		// String rutaArchivoPuntoDoc = RUTAARCHIVOSENTRADA + archivoPuntoDoc;
 		DocumentoLibre documentoLibre = new DocumentoLibre(getDriver(), RUTAARCHIVOSENTRADA);
 		documentoLibre.getCapturarPantalla().setPatron(nombreMetodo);
+		String textoReferencia = "PhantomJS - AUTOMATIZADO - testGEDOEnviarAFirmar";
+		String archivoPuntoDoc = "GobTuc_Diseño Funcional-Expediente Electrónico.doc";
+		String usuarioFirmanterMismaRepaticion = "NRuby ARuby";
 		String[] listaDestinatarios = {"Carlos Gauto","NRuby ARuby"};
 		// Parametrizar o externalizar datos variables
 
@@ -103,6 +106,14 @@ public class PruebasGEDO implements Constantes {
 			documentoLibre.getCapturarPantalla().capturarPantalla();
 			documentoLibre.getEspera().getWait();
 			documentoLibre.getCapturarPantalla().capturarPantalla();
+			documentoLibre.producirloYoMismo();
+			documentoLibre.getCapturarPantalla().capturarPantalla();
+			documentoLibre.producirDocumentoLibreImportarWord(textoReferencia, archivoPuntoDoc);
+			/* Esperar a que suba el archivo word */
+			documentoLibre.getEspera().getWait();
+			documentoLibre.getCapturarPantalla().capturarPantalla();
+			documentoLibre.enviarAFirmarUsuarioMismaReparticion(usuarioFirmanterMismaRepaticion);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			documentoLibre.getCapturarPantalla().setPatron("ERROR_" + nombreMetodo);

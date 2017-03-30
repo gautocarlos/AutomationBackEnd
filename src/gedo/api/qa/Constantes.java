@@ -10,7 +10,8 @@ public interface Constantes {
 	public static final String GEDOIMPORTADO_ = "GEDOIMPORTADO_";
 	public static final String GEDOTEMPLATE_ = "GEDOTEMPLATE_";
 	public static final String GEDOIMPTEMPLATE_ = "GEDOIMPTEMPLATE_";
-	public static final String URLGEDO = "http://eug.nac.gde.gob.ar/gedo-web/";
+	public static final String URLGEDOTEST = "http://eug.nac.gde.gob.ar/gedo-web/";
+	public static final String URLGEDOQA = "http://eug.qac.gde.gob.ar/gedo-web/";
 	public static final String INICIODOCUMENTO = "//img[contains(@src,'./imagenes/page_white_text.png')]";
 	public static final String DOCUMENTOELECTRONICO = "//td[3]/i/input";
 	public static final String PRODUCIRLOYOMISMO = "//img[contains(@src,'/gedo-web/imagenes/ProducirloYoMismo.png')]";

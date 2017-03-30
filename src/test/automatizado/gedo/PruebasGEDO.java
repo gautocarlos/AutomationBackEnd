@@ -75,7 +75,7 @@ public class PruebasGEDO implements Constantes {
 
 	@Before
 	public void setUp() throws Exception {
-		new IngresoLoginCas(getDriver(), URLGEDOQA, getUsuario(), getPassword());
+		new IngresoLoginCas(getDriver(), URLGEDOTEST, getUsuario(), getPassword());
 	}
 	// Lógica de automatización
 	@Test
@@ -90,27 +90,29 @@ public class PruebasGEDO implements Constantes {
 		String archivoPuntoDoc = "GobTuc_Diseño Funcional-Expediente Electrónico.doc";
 		String usuarioFirmanterMismaRepaticion = "NRuby ARuby";
 		String[] listaDestinatarios = {"Carlos Gauto","NRuby ARuby"};
+		String[] listaDestinatariosCopia = {"DJANGO DJANGO","Mindi Mindi"};
+		String[] listaDestinatariosCopiaOculta = {"NILRACOLOS","MARINA VILLAGGI"};
 		// Parametrizar o externalizar datos variables
 
 		try {
-			documentoLibre.getEspera().getWait();
+			documentoLibre.getSeleniumUtilitario().getWait();
 			documentoLibre.inicioDocumento();
 			documentoLibre.iniciarProduccionDeDocumento(DOCUMENTOELECTRONICO, acronimoGEDO);
 			documentoLibre.quieroRecibirUnAvisoCuandoElDocumentoSeFirme();
 			documentoLibre.quieroEnviarUnCorreoAlReceptorDeLaTarea();
 			documentoLibre.getCapturarPantalla().capturarPantalla();
 			documentoLibre.definirDestinatarios();
-			documentoLibre.getEspera().getWait();
+			documentoLibre.getSeleniumUtilitario().getWait();
 			documentoLibre.getCapturarPantalla().capturarPantalla();			
-			documentoLibre.definirDestinatariosCCOO(listaDestinatarios);
+			documentoLibre.definirDestinatariosCCOO(listaDestinatarios,listaDestinatariosCopia, listaDestinatariosCopiaOculta);
 			documentoLibre.getCapturarPantalla().capturarPantalla();
-			documentoLibre.getEspera().getWait();
+			documentoLibre.getSeleniumUtilitario().getWait();
 			documentoLibre.getCapturarPantalla().capturarPantalla();
 			documentoLibre.producirloYoMismo();
 			documentoLibre.getCapturarPantalla().capturarPantalla();
 			documentoLibre.producirDocumentoLibreImportarWord(textoReferencia, archivoPuntoDoc);
 			/* Esperar a que suba el archivo word */
-			documentoLibre.getEspera().getWait();
+			documentoLibre.getSeleniumUtilitario().getWait();
 			documentoLibre.getCapturarPantalla().capturarPantalla();
 			documentoLibre.enviarAFirmarUsuarioMismaReparticion(usuarioFirmanterMismaRepaticion);
 
@@ -136,7 +138,7 @@ public class PruebasGEDO implements Constantes {
 		// Parametrizar o externalizar datos variables
 
 		try {
-			documentoLibre.getEspera().getWait();
+			documentoLibre.getSeleniumUtilitario().getWait();
 			documentoLibre.inicioDocumento();
 			documentoLibre.quieroRecibirUnAvisoCuandoElDocumentoSeFirme();
 			documentoLibre.quieroEnviarUnCorreoAlReceptorDeLaTarea();
@@ -146,7 +148,7 @@ public class PruebasGEDO implements Constantes {
 			documentoLibre.getCapturarPantalla().capturarPantalla();
 			documentoLibre.producirDocumentoLibreImportarWord(textoReferencia, archivoPuntoDoc);
 			/* Esperar a que suba el archivo word */
-			documentoLibre.getEspera().getWait();
+			documentoLibre.getSeleniumUtilitario().getWait();
 			documentoLibre.getCapturarPantalla().capturarPantalla();
 			documentoLibre.enviarAFirmarUsuarioMismaReparticion(usuarioFirmanterMismaRepaticion);
 		} catch (Exception e) {
@@ -172,7 +174,7 @@ public class PruebasGEDO implements Constantes {
 		// Parametrizar o externalizar datos variables
 
 		try {
-			documentoLibre.getEspera().getWait();
+			documentoLibre.getSeleniumUtilitario().getWait();
 			documentoLibre.inicioDocumento();
 			documentoLibre.quieroRecibirUnAvisoCuandoElDocumentoSeFirme();
 			documentoLibre.quieroEnviarUnCorreoAlReceptorDeLaTarea();
@@ -182,7 +184,7 @@ public class PruebasGEDO implements Constantes {
 			documentoLibre.getCapturarPantalla().capturarPantalla();
 			documentoLibre.producirDocumentoLibreImportarWord(textoReferencia, archivoPuntoDoc);
 			/* Esperar a que suba el archivo word */
-			documentoLibre.getEspera().getWait();
+			documentoLibre.getSeleniumUtilitario().getWait();
 			documentoLibre.getCapturarPantalla().capturarPantalla();
 			documentoLibre.enviarAFirmarUsuarioDistintaReparticion(usuarioFirmanterDistintaRepaticion);
 		} catch (Exception e) {
@@ -208,7 +210,7 @@ public class PruebasGEDO implements Constantes {
 		// Parametrizar o externalizar datos variables
 
 		try {
-			documentoLibre.getEspera().getWait();
+			documentoLibre.getSeleniumUtilitario().getWait();
 			documentoLibre.inicioDocumento();
 			documentoLibre.quieroRecibirUnAvisoCuandoElDocumentoSeFirme();
 			documentoLibre.quieroEnviarUnCorreoAlReceptorDeLaTarea();
@@ -234,20 +236,20 @@ public class PruebasGEDO implements Constantes {
 		// Parametrizar o externalizar datos variables
 
 		try {
-			documentoLibre.getEspera().getWait();
+			documentoLibre.getSeleniumUtilitario().getWait();
 			documentoLibre.inicioDocumento();
 			documentoLibre.iniciarProduccionDeDocumento(DOCUMENTOELECTRONICO, acronimoGEDO);
 			documentoLibre.producirloYoMismo();
 			documentoLibre.getCapturarPantalla().capturarPantalla();
 			documentoLibre.producirDocumentoLibreImportarWord(textoReferencia, archivoPuntoDoc);
 			/* Esperar a que suba el archivo word */
-			documentoLibre.getEspera().getWait();
+			documentoLibre.getSeleniumUtilitario().getWait();
 			documentoLibre.getCapturarPantalla().capturarPantalla();
 			documentoLibre.firmarYoMismo();
-			documentoLibre.getEspera().waitElementByXpath(FIRMARCONCERTIFICADO);
+			documentoLibre.getSeleniumUtilitario().waitElementByXpath(FIRMARCONCERTIFICADO);
 			documentoLibre.getCapturarPantalla().capturarPantalla();
 			documentoLibre.firmarConCertificado();
-			documentoLibre.getEspera().waitElementByXpath(VOLVERALBUZONDETAREAS);
+			documentoLibre.getSeleniumUtilitario().waitElementByXpath(VOLVERALBUZONDETAREAS);
 			documentoLibre.getCapturarPantalla().capturarPantalla();
 			documentoLibre.volverAlBuzonDeTareas();
 			documentoLibre.getCapturarPantalla().capturarPantalla();
@@ -272,20 +274,20 @@ public class PruebasGEDO implements Constantes {
 		// Parametrizar o externalizar datos variables
 
 		try {
-			documentoImportado.getEspera().getWait();
+			documentoImportado.getSeleniumUtilitario().getWait();
 			documentoImportado.inicioDocumento();
 			documentoImportado.iniciarProduccionDeDocumento(DOCUMENTOELECTRONICO, acronimoGEDO);
 			documentoImportado.producirloYoMismo();
 			documentoImportado.getCapturarPantalla().capturarPantalla();
 			documentoImportado.producirDocumentoImportado(textoReferencia, archivoImportado);
 			/* Esperar a que suba el archivo word */
-			documentoImportado.getEspera().getWait();
+			documentoImportado.getSeleniumUtilitario().getWait();
 			documentoImportado.getCapturarPantalla().capturarPantalla();
 			documentoImportado.firmarYoMismo();
-			documentoImportado.getEspera().waitElementByXpath(FIRMARCONCERTIFICADO);
+			documentoImportado.getSeleniumUtilitario().waitElementByXpath(FIRMARCONCERTIFICADO);
 			documentoImportado.getCapturarPantalla().capturarPantalla();
 			documentoImportado.firmarConCertificado();
-			documentoImportado.getEspera().waitElementByXpath(VOLVERALBUZONDETAREAS);
+			documentoImportado.getSeleniumUtilitario().waitElementByXpath(VOLVERALBUZONDETAREAS);
 			documentoImportado.getCapturarPantalla().capturarPantalla();
 			documentoImportado.volverAlBuzonDeTareas();
 			documentoImportado.getCapturarPantalla().capturarPantalla();
@@ -311,20 +313,20 @@ public class PruebasGEDO implements Constantes {
 		// Parametrizar o externalizar datos variables
 
 		try {
-			documentoLibre.getEspera().getWait();
+			documentoLibre.getSeleniumUtilitario().getWait();
 			documentoLibre.inicioDocumento();
 			documentoLibre.iniciarProduccionDeDocumento(DOCUMENTOELECTRONICO, acronimoGEDO);
 			documentoLibre.producirloYoMismo();
 			// documentoLibre.getCapturarPantalla().capturarPantalla();
 			documentoLibre.producirDocumentoLibreImportarWord(textoReferencia, archivoPuntoDoc);
 			/* Esperar a que suba el archivo word */
-			documentoLibre.getEspera().getWait();
+			documentoLibre.getSeleniumUtilitario().getWait();
 			// documentoLibre.getCapturarPantalla().capturarPantalla();
 			documentoLibre.enviarARevisar();
-			documentoLibre.getEspera().getWait();
+			documentoLibre.getSeleniumUtilitario().getWait();
 			documentoLibre.getCapturarPantalla().capturarPantalla();
 			documentoLibre.completarRevisorMensaje(usuarioRevisorMismaRepaticion, mensaje);
-			documentoLibre.getEspera().getWait();
+			documentoLibre.getSeleniumUtilitario().getWait();
 			documentoLibre.getCapturarPantalla().capturarPantalla();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -345,13 +347,13 @@ public class PruebasGEDO implements Constantes {
 		// Parametrizar o externalizar datos variables
 
 		try {
-			documentoLibre.getEspera().getWait();
+			documentoLibre.getSeleniumUtilitario().getWait();
 			documentoLibre.inicioDocumento();
 			documentoLibre.iniciarProduccionDeDocumento(DOCUMENTOELECTRONICO, acronimoGEDO);
 			documentoLibre.enviarAProducirTareaUsuario(usuarioProductorMismaReparticion, mensajeParaProductor);
 			documentoLibre.getCapturarPantalla().capturarPantalla();
 			documentoLibre.enviarAProducirUsuarioMismaReparticion();
-			documentoLibre.getEspera().getWait();
+			documentoLibre.getSeleniumUtilitario().getWait();
 			documentoLibre.getCapturarPantalla().capturarPantalla();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -373,13 +375,13 @@ public class PruebasGEDO implements Constantes {
 		// Parametrizar o externalizar datos variables
 
 		try {
-			documentoLibre.getEspera().getWait();
+			documentoLibre.getSeleniumUtilitario().getWait();
 			documentoLibre.inicioDocumento();
 			documentoLibre.iniciarProduccionDeDocumento(DOCUMENTOELECTRONICO, acronimoGEDO);
 			documentoLibre.enviarAProducirTareaUsuario(usuarioProductorDisintaRepaticion, mensajeParaProductor);
 			documentoLibre.getCapturarPantalla().capturarPantalla();
 			documentoLibre.enviarAProducirUsuarioDistintaReparticionAceptar();
-			documentoLibre.getEspera().getWait();
+			documentoLibre.getSeleniumUtilitario().getWait();
 			documentoLibre.getCapturarPantalla().capturarPantalla();
 		} catch (Exception e) {
 			e.printStackTrace();

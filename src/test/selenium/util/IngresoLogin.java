@@ -14,7 +14,7 @@ public abstract class IngresoLogin implements Constantes{
 		this.url = url;
 		ingreso(url);
 		login(usuario,password);
-		new SeleniumWait(getDriver()).getWait();
+		new SeleniumUtilitario(getDriver()).getWait();
 	}
 
 	public WebDriver getDriver() {

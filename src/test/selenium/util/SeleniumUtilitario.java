@@ -1,14 +1,17 @@
 package test.selenium.util;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
-public class SeleniumWait {
+public class SeleniumUtilitario {
 
 	private WebDriver driver;
 
-	public SeleniumWait(WebDriver driver) {
+	public SeleniumUtilitario(WebDriver driver) {
 		this.driver = driver;
 	}
 
@@ -67,8 +70,8 @@ public class SeleniumWait {
 	}
 
 	/**
-	 * @throws Exception 
-	 * */
+	 * @throws Exception
+	 */
 	public void waitElementById(String id) throws Exception {
 		for (int intentos = 1;; intentos++) {
 			// Se reduce la espera de 60 3 intentos
@@ -89,4 +92,39 @@ public class SeleniumWait {
 		}
 	}
 
+	/**
+	 * @param xpath
+	 *            recibe un xpath y realiza click sobre el mismo
+	 */
+	public void clickByXPath(String xpath) {
+		driver.findElement(By.xpath(xpath)).click();
+	}
+
+	/**
+	 * @param xpath
+	 *            xpath del elemento a realizar click
+	 * @param indice
+	 *            se utiliza para el caso en el que con el mismo xpath relativo
+	 *            se obtiene más de un elemento, se realiza click sobre el
+	 *            elemento pasado por parámetro
+	 * @throws Exception
+	 *             "El índice recibido tiene que ser mayor o igual a 0"
+	 */
+	public void clickByXPath(String xpath, int indice) throws Exception {
+		try {
+			getWait();
+			List<WebElement> elementos = driver.findElements(By.xpath(xpath));
+			int cantidadElementos = elementos.size();
+			// validar por el límite máximo
+			if ((indice >= 0) && (cantidadElementos > 0) && (cantidadElementos > indice)) {
+				elementos.get(indice).click();
+				// return elementos.get(indice);
+			} else {
+				throw new Exception("El índice: " + indice + " recibido es menor a 0 o la cantidad de elementos: "
+						+ cantidadElementos + " retornados para el xpath: " + xpath + " es 0");
+			}
+		} catch (Exception e) {
+			throw e;
+		}
+	}
 }

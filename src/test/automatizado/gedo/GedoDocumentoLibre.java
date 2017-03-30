@@ -12,7 +12,7 @@ import gedo.api.qa.Constantes;
 import test.selenium.util.CapturarPantalla;
 import test.selenium.util.DriverPhantom;
 import test.selenium.util.IngresoLoginCas;
-import test.selenium.util.SeleniumWait;
+import test.selenium.util.SeleniumUtilitario;
 
 /**
  * @deprecated Clase utilizada para primeras pruebas que quedó en desuso. varios
@@ -27,7 +27,7 @@ public class GedoDocumentoLibre implements Constantes {
 	private String url = "http://eug.nac.gde.gob.ar/gedo-web/";
 	private String usuario = "RUBIEE";
 	private String password = "Zaq12w";
-	private SeleniumWait espera;
+	private SeleniumUtilitario espera;
 	private StringBuffer verificationErrors = new StringBuffer();
 	private CapturarPantalla capturarPantalla;
 	private String rutaCapturasDePantalla = "capturasDePantalla";
@@ -35,7 +35,7 @@ public class GedoDocumentoLibre implements Constantes {
 	// Constructor
 	public GedoDocumentoLibre() {
 		inicializarDriver();
-		setEspera(new SeleniumWait(getDriver()));
+		setEspera(new SeleniumUtilitario(getDriver()));
 		setCapturarPantalla(new CapturarPantalla(getDriver(), rutaCapturasDePantalla, "GEDO_"));
 	}
 
@@ -71,12 +71,12 @@ public class GedoDocumentoLibre implements Constantes {
 		this.driver = driver;
 	}
 
-	public SeleniumWait getEspera() {
+	public SeleniumUtilitario getEspera() {
 		// espera.getWait();
 		return espera;
 	}
 
-	public void setEspera(SeleniumWait espera) {
+	public void setEspera(SeleniumUtilitario espera) {
 		this.espera = espera;
 	}
 

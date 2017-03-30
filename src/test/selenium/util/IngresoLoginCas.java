@@ -18,7 +18,7 @@ public class IngresoLoginCas extends IngresoLogin {
 		driver.findElement(By.xpath(CAMPOPASSWORDCAS))
 				.sendKeys(password);
 		driver.findElement(By.xpath(CAMPOACCEDERCAS)).click();
-		new SeleniumWait(driver).getWait();
+		new SeleniumUtilitario(driver).getWait();
 	}
 
 }

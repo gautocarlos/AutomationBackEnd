@@ -13,14 +13,14 @@ public class IngresoLoginJira extends IngresoLogin {
 	public void login(String usuario, String password) throws Exception {
 		try {
 			WebDriver driver = getDriver();
-			SeleniumWait espera = new SeleniumWait(driver);
+			SeleniumUtilitario espera = new SeleniumUtilitario(driver);
 			espera.waitElementById("login-form-username");
 			driver.findElement(By.id("login-form-username")).clear();
 			driver.findElement(By.id("login-form-username")).sendKeys(usuario);
 			driver.findElement(By.id("login-form-password")).clear();
 			driver.findElement(By.id("login-form-password")).sendKeys(password);
 			driver.findElement(By.id("login-form-submit")).click();
-			new SeleniumWait(driver).getWait();
+			new SeleniumUtilitario(driver).getWait();
 			System.out.println("Login JIRA OK");
 		}
 		catch (Exception e) {

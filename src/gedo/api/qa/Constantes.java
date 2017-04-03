@@ -5,7 +5,7 @@ package gedo.api.qa;
  **/
 public interface Constantes {
 	// Span de la pantalla De la Descripción del tipo de trámite a iniciar
-	public static final String DESCRIPCIONDELTIPODEDOCUMENTO = "//span[contains(text(),'Descripción del tipo de documento')]";	
+	public static final String DESCRIPCIONDELTIPODEDOCUMENTO = "//span[contains(text(),'Descripción del tipo de documento')]";
 	public static final String GEDOLIBRE_ = "GEDOLIBRE_";
 	public static final String GEDOIMPORTADO_ = "GEDOIMPORTADO_";
 	public static final String GEDOTEMPLATE_ = "GEDOTEMPLATE_";
@@ -47,9 +47,14 @@ public interface Constantes {
 
 	public static final String PROCESOPRODUCCION = "//span[contains(text(),'El proceso de producción del documento se ha iniciado correctamente')]";
 	public static final String TDMSJBOXOK = "//td[contains(text(),'OK')]";
+	// Botones TD
 	public static final String BOTONACEPTAR = "//td[contains(text(),'Aceptar')]";
-	public static final String BOTONSI = "//td[contains(text(),'Sí')]";
-
+	public static final String BOTONAGREGAR = "//td[contains(text(),'Agregar')]";
+	public static final String BOTONGUARDAR = "//td[contains(text(),'Guardar')]";
+	public static final String BOTONCANCELAR = "//td[contains(text(),'Cancelar')]";
+//	public static final String BOTONSI = "//td[contains(text(),'Sí')]";
+	public static final String BOTONSI = "//td[contains(., 'Sí') and contains(@class, 'z-button-cm')]";
+	public static final String BOTONNO = "//td[contains(., 'No') and contains(@class, 'z-button-cm')]";
 	/**/
 	public static final String TDZ_COMBOITEM_TEXT = "td.z-comboitem-text";
 	public static final String TD_TEXTAREA = "//td/textarea";
@@ -57,6 +62,11 @@ public interface Constantes {
 	public static final String CAMPOREVISOR = "//tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr/td[5]/i/input";
 	public static final String CAMPOPRODUCTOR = "//div/i/input";
 	public static final String TEXTAREA = "//textarea";
+	// Firma conjunta
+	public static final String CARGARUSUARIOSFIRMANTES = "//img[contains(@src,'/gedo-web/imagenes/CargarUsuariosFirmantes.png')]";
+	public static final String CAMPOUSUARIOFIRMANTE = "//tbody/tr/td[2]/div/i/input";
+	public static final String CARTELFIRMANTESINREVISOR = "El usuario firmante seleccionado no tiene definido un usuario revisor de documentos de firma conjunta en su perfil de Escritorio Único (solapa Datos Personales). Si es necesario usted puede agregar ahora un revisor para este documento.";
+	public static final String CARTELFIRMANTENOREVISOR = "//span[contains(text(),'El usuario firmante seleccionado no tiene definido un usuario revisor de documentos de firma conjunta en su perfil de Escritorio Único (solapa Datos Personales). Si es necesario usted puede agregar ahora un revisor para este documento.')]";
 	// Enviar a firmar documento
 	public static final String CAMPOFIRMANTE = "//tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr/td[5]/i/input";
 	public static final String LABELQUIEROAVISOCUANDOFIRME = "//label[contains(text(),'Quiero recibir un aviso cuando el documento se firme.')]";
@@ -64,7 +74,7 @@ public interface Constantes {
 	// Destinatario de una CCOO
 	public static final String CAMPODESTINATARIO = "//tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr/td[5]/i/input";
 	public static final String BOTONMAS = "//img[contains(@src,'/gedo-web/imagenes/mas.png')]";
-	public static final String SELECCIONARUSUARIODESTINATARIO = "//tbody/tr/td/table/tbody/tr[3]/td/i/input";	
+	public static final String SELECCIONARUSUARIODESTINATARIO = "//tbody/tr/td/table/tbody/tr[3]/td/i/input";
 	public static final int INDICEBOTONMASDESTINATARIO = 0;
 	public static final int INDICEBOTONMASCOPIA = 1;
 	public static final int INDICEBOTONMASCOPIAOCULTA = 2;

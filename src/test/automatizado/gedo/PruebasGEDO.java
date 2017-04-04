@@ -1,5 +1,6 @@
 package test.automatizado.gedo;
-
+import java.awt.List;
+import java.util.ArrayList;
 import static org.junit.Assert.*;
 
 import org.junit.After;
@@ -77,61 +78,8 @@ public class PruebasGEDO implements Constantes {
 	public void setUp() throws Exception {
 		new IngresoLoginCas(getDriver(), URLGEDOTEST, getUsuario(), getPassword());
 	}
-
 	// Lógica de automatización
-
-	@Test
-	public void testGEDOFirmaConjuntaLibreCargarFirmantes() throws Exception {
-		// Parametrizar o externalizar datos variables
-		String nombreMetodo = "testGEDOFirmaConjuntaLibreCargarFirmantes";
-		String acronimoGEDO = "CONJL";
-		// String rutaArchivoPuntoDoc = RUTAARCHIVOSENTRADA + archivoPuntoDoc;
-		DocumentoLibre documentoLibre = new DocumentoLibre(getDriver(), RUTAARCHIVOSENTRADA);
-		documentoLibre.getCapturarPantalla().setPatron(nombreMetodo);
-		String textoReferencia = "PhantomJS - AUTOMATIZADO - testGEDOFirmaConjuntaLibreCargarFirmantes";
-		String archivoPuntoDoc = "GobTuc_Diseño Funcional-Expediente Electrónico.doc";
-		String usuarioFirmanterMismaRepaticion = "NRuby ARuby";
-		// String[] listaFirmantes = { "Mart Siempreterno", "NRuby ARuby" };
-		String[] listaFirmantes1 = { "Christopher Nolan", "NRuby ARuby" };
-		String[] listaFirmantes2 = { "NRuby ARuby", "Christopher Nolan" };
-		String[] listaFirmante3 = { "Christopher Nolan", "NRuby ARuby" };
-		// String[] listaDestinatariosCopia = { "DJANGO DJANGO", "Mindi Mindi"
-		// };
-		// String[] listaDestinatariosCopiaOculta = { "NILRACOLOS", "MARINA
-		// VILLAGGI" };
-		// Parametrizar o externalizar datos variables
-
-		try {
-			documentoLibre.getSeleniumUtilitario().getWait();
-			documentoLibre.inicioDocumento();
-			documentoLibre.iniciarProduccionDeDocumento(DOCUMENTOELECTRONICO, acronimoGEDO);
-			documentoLibre.quieroRecibirUnAvisoCuandoElDocumentoSeFirme();
-			documentoLibre.quieroEnviarUnCorreoAlReceptorDeLaTarea();
-			documentoLibre.getCapturarPantalla().capturarPantalla();
-			documentoLibre.cargarFirmantesOmitirRevisores(listaFirmantes2);
-			documentoLibre.getSeleniumUtilitario().getWait();
-			documentoLibre.getCapturarPantalla().capturarPantalla();
-			// documentoLibre.getSeleniumUtilitario().getWait();
-			// documentoLibre.getCapturarPantalla().capturarPantalla();
-			// documentoLibre.producirloYoMismo();
-			// documentoLibre.getCapturarPantalla().capturarPantalla();
-			// documentoLibre.producirDocumentoLibreImportarWord(textoReferencia,
-			// archivoPuntoDoc);
-			// /* Esperar a que suba el archivo word */
-			// documentoLibre.getSeleniumUtilitario().getWait();
-			// documentoLibre.getCapturarPantalla().capturarPantalla();
-			// documentoLibre.enviarAFirmarUsuarioMismaReparticion(usuarioFirmanterMismaRepaticion);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			documentoLibre.getCapturarPantalla().setPatron("ERROR_" + nombreMetodo);
-			documentoLibre.getCapturarPantalla().capturarPantalla();
-			throw e;
-		}
-
-	}
-
-	@Test
+	//@Test
 	public void testCCOODefinirDestinatariosEnviarFirmarUsuarioMismaRepaticion() throws Exception {
 		// Parametrizar o externalizar datos variables
 		String nombreMetodo = "testCCOODefinirDestinatariosEnviarFirmarUsuarioMismaRepaticion";
@@ -142,9 +90,9 @@ public class PruebasGEDO implements Constantes {
 		String textoReferencia = "PhantomJS - AUTOMATIZADO - testGEDOEnviarAFirmar";
 		String archivoPuntoDoc = "GobTuc_Diseño Funcional-Expediente Electrónico.doc";
 		String usuarioFirmanterMismaRepaticion = "NRuby ARuby";
-		String[] listaDestinatarios = { "Carlos Gauto", "NRuby ARuby" };
-		String[] listaDestinatariosCopia = { "DJANGO DJANGO", "Mindi Mindi" };
-		String[] listaDestinatariosCopiaOculta = { "NILRACOLOS", "MARINA VILLAGGI" };
+		String[] listaDestinatarios = {"Carlos Gauto","NRuby ARuby"};
+		String[] listaDestinatariosCopia = {"DJANGO DJANGO","Mindi Mindi"};
+		String[] listaDestinatariosCopiaOculta = {"NILRACOLOS","MARINA VILLAGGI"};
 		// Parametrizar o externalizar datos variables
 
 		try {
@@ -156,9 +104,8 @@ public class PruebasGEDO implements Constantes {
 			documentoLibre.getCapturarPantalla().capturarPantalla();
 			documentoLibre.definirDestinatarios();
 			documentoLibre.getSeleniumUtilitario().getWait();
-			documentoLibre.getCapturarPantalla().capturarPantalla();
-			documentoLibre.definirDestinatariosCCOO(listaDestinatarios, listaDestinatariosCopia,
-					listaDestinatariosCopiaOculta);
+			documentoLibre.getCapturarPantalla().capturarPantalla();			
+			documentoLibre.definirDestinatariosCCOO(listaDestinatarios,listaDestinatariosCopia, listaDestinatariosCopiaOculta);
 			documentoLibre.getCapturarPantalla().capturarPantalla();
 			documentoLibre.getSeleniumUtilitario().getWait();
 			documentoLibre.getCapturarPantalla().capturarPantalla();
@@ -178,8 +125,7 @@ public class PruebasGEDO implements Constantes {
 		}
 
 	}
-
-	@Test
+	//@Test
 	public void testGEDOEnviarAFirmarUsuarioMismaReparticion() throws Exception {
 		// Parametrizar o externalizar datos variables
 		String nombreMetodo = "testGEDOEnviarAFirmar";
@@ -215,7 +161,7 @@ public class PruebasGEDO implements Constantes {
 
 	}
 
-	@Test
+	//@Test
 	public void testGEDOEnviarAFirmarUsuarioDistintaReparticion() throws Exception {
 		// Parametrizar o externalizar datos variables
 		String nombreMetodo = "testGEDOEnviarAFirmarUsuarioDistintaReparticion";
@@ -252,15 +198,13 @@ public class PruebasGEDO implements Constantes {
 	}
 
 	// Lógica de automatización
-	@Test
+	//@Test
 	public void testGEDOAvisoDeFirma() throws Exception {
 		// Parametrizar o externalizar datos variables
 		String nombreMetodo = "testGEODAvisoDeFirma";
-		// String acronimoGEDO = "IF";
-		// String textoReferencia = "PhantomJS - AUTOMATIZADO -
-		// testGEODAvisoDeFirma";
-		// String archivoPuntoDoc = "GobTuc_Diseño Funcional-Expediente
-		// Electrónico.doc";
+//		String acronimoGEDO = "IF";
+//		String textoReferencia = "PhantomJS - AUTOMATIZADO - testGEODAvisoDeFirma";
+//		String archivoPuntoDoc = "GobTuc_Diseño Funcional-Expediente Electrónico.doc";
 		// String rutaArchivoPuntoDoc = RUTAARCHIVOSENTRADA + archivoPuntoDoc;
 		DocumentoLibre documentoLibre = new DocumentoLibre(getDriver(), RUTAARCHIVOSENTRADA);
 		documentoLibre.getCapturarPantalla().setPatron(nombreMetodo);
@@ -281,7 +225,7 @@ public class PruebasGEDO implements Constantes {
 
 	}
 
-	@Test
+	//@Test
 	public void testGEDODocumentoLibre() throws Exception {
 		// Parametrizar o externalizar datos variables
 		String nombreMetodo = "testGEDODocumentoLibre";
@@ -357,7 +301,7 @@ public class PruebasGEDO implements Constantes {
 
 	}
 
-	@Test
+	//@Test
 	public void testGEDODocumentoLibreEnviarARevisarUsuarioMismaReparticion() throws Exception {
 		// Parametrizar o externalizar datos variables
 		String nombreMetodo = "testGEDODocumentoLibreEnviarARevisarUsuarioMismaReparticion";
@@ -394,7 +338,7 @@ public class PruebasGEDO implements Constantes {
 
 	}
 
-	@Test
+	//@Test
 	public void testGEDODocumentoLibreEnviarAProducirUsuarioMismaReparticion() throws Exception {
 		String nombreMetodo = "testGEDODocumentoLibreEnviarAProducirUsuarioMismaReparticion";
 		String acronimoGEDO = "IF";
@@ -421,7 +365,7 @@ public class PruebasGEDO implements Constantes {
 
 	}
 
-	@Test
+	//@Test
 	public void testGEDODocumentoLibreEnviarAProducirUsuarioDistintaReparticion() throws Exception {
 		// Parametrizar o externalizar datos variables
 		String nombreMetodo = "testGEDODocumentoLibreEnviarAProducirUsuarioDistintaReparticion";
@@ -446,7 +390,48 @@ public class PruebasGEDO implements Constantes {
 			documentoLibre.getCapturarPantalla().capturarPantalla();
 			throw e;
 		}
-
+	}
+	//@Test
+	public void testArchivoTrabajoPantallaInicioDoc() throws Exception{
+		DocumentoLibre documentoLibre= new DocumentoLibre(getDriver(), RUTAARCHIVOSENTRADA);
+		String archivoImportado[]={"archivoImportado.png"};
+		//String archivoImportado = "archivoImportado.png";
+		String nombreMetodo = "testArchivoTrabajoPantallaInicioDoc";
+		try {
+			documentoLibre.getSeleniumUtilitario().getWait();
+			documentoLibre.inicioDocumento();
+			documentoLibre.ArchivosDeTrabajo();
+			documentoLibre.AniadirDocumento(archivoImportado, SELECCCIONARARCHIVO);
+			documentoLibre.getCapturarPantalla().capturarPantalla();
+		} catch (Exception e) {
+			e.printStackTrace();
+			documentoLibre.getCapturarPantalla().setPatron("ERROR_" + nombreMetodo);
+			documentoLibre.getCapturarPantalla().capturarPantalla();
+			throw e;
+		}	
+	}
+	
+	//@Test
+	public void testArchivoTrabajoPantallaProducirDocumento() throws Exception{
+		DocumentoLibre documentoLibre= new DocumentoLibre(getDriver(), RUTAARCHIVOSENTRADA);
+		String archivoImportado[]={"archivoImportado.png"};
+		//String archivoImportado = "archivoImportado.png";
+		String nombreMetodo = "testArchivoTrabajoPantallaInicioDoc";
+		String acronimoGEDO = "IF";
+		try {
+			documentoLibre.getSeleniumUtilitario().getWait();
+			documentoLibre.inicioDocumento();
+			documentoLibre.iniciarProduccionDeDocumento(DOCUMENTOELECTRONICO, acronimoGEDO);
+			documentoLibre.producirloYoMismo();
+			documentoLibre.seleccionarSolapaArchivosDeTrabajoProducirDocumento();
+			documentoLibre.AniadirDocumento(archivoImportado, SELECCCIONARARCHIVO);
+			documentoLibre.getCapturarPantalla().capturarPantalla();
+		} catch (Exception e) {
+			e.printStackTrace();
+			documentoLibre.getCapturarPantalla().setPatron("ERROR_" + nombreMetodo);
+			documentoLibre.getCapturarPantalla().capturarPantalla();
+			throw e;
+		}	
 	}
 
 	@After

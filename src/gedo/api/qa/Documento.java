@@ -1,6 +1,7 @@
 package gedo.api.qa;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -82,6 +83,69 @@ public abstract class Documento implements Constantes {
 		getSeleniumUtilitario().clickByXPath(INICIODOCUMENTO);
 		getSeleniumUtilitario().getWait();
 	}
+	
+	/**
+	 * @throws Exception
+	 * 
+	 */
+	public void ArchivosDeTrabajo() throws Exception{
+		getSeleniumUtilitario().waitElementByXpath(ARCHIVOSDETRABAJO);
+		getSeleniumUtilitario().clickByXPath(ARCHIVOSDETRABAJO);
+		getSeleniumUtilitario().getWait();
+	}
+	
+	/**
+	 * @param Archivo
+	 * @throws Exception
+	 */	
+	public void AniadirDocumento(String Lista[], String xpath) throws Exception{
+		//getSeleniumUtilitario().waitElementByXpath(xpath);
+		//getSeleniumUtilitario().sendKeysByXPath(xpath, RUTAARCHIVOSENTRADA + Archivo);
+		//getSeleniumUtilitario().getWait();
+		
+		for(byte i = 0; i < Lista.length; i++){
+			getSeleniumUtilitario().waitElementByXpath(xpath);
+			getSeleniumUtilitario().sendKeysByXPath(xpath, RUTAARCHIVOSENTRADA + Lista[i]);
+			getSeleniumUtilitario().getWait();
+		}
+	}
+	
+	/**
+	 * @throws Exception
+	 */	
+	public void seleccionarSolapaArchivosDeTrabajoProducirDocumento() throws Exception{
+		getSeleniumUtilitario().waitElementByXpath(PRODDOCSOLAPAARCHTRAB);
+		getSeleniumUtilitario().clickByXPath(PRODDOCSOLAPAARCHTRAB);
+		getSeleniumUtilitario().getWait();
+	} 
+	
+	/**
+	 * @throws Exception
+	 */	
+	public void seleccionarSolapaProduccionProducirDocumento() throws Exception{
+		getSeleniumUtilitario().waitElementByXpath(PRODDOCSOLAPAPRODUCCION);
+		getSeleniumUtilitario().clickByXPath(PRODDOCSOLAPAPRODUCCION);
+		getSeleniumUtilitario().getWait();
+	} 
+	
+	/**
+	 * @throws Exception
+	 */	
+	public void seleccionarSolapaArchivosEmbebidosProducirDocumento() throws Exception{
+		getSeleniumUtilitario().waitElementByXpath(PRODDOCSOLAPAARCHIVOSEMBEBIDOS);
+		getSeleniumUtilitario().clickByXPath(PRODDOCSOLAPAARCHIVOSEMBEBIDOS);
+		getSeleniumUtilitario().getWait();
+	} 
+	
+	/**
+	 * @throws Exception
+	 */	
+	public void seleccionarSolapaDatosPropiosProducirDocumento() throws Exception{
+		getSeleniumUtilitario().waitElementByXpath(PRODDOCSOLAPADATOSPROPIOS);
+		getSeleniumUtilitario().clickByXPath(PRODDOCSOLAPADATOSPROPIOS);
+		getSeleniumUtilitario().getWait();
+	} 
+	
 
 	/**
 	 * @param documentoElectronico

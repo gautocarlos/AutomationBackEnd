@@ -7,7 +7,9 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class SeleniumUtilitario {
+import gedo.api.qa.Constantes;
+
+public class SeleniumUtilitario implements Constantes {
 
 	private WebDriver driver;
 
@@ -43,16 +45,16 @@ public class SeleniumUtilitario {
 	public void waitElementByXpath(String xpath) throws Exception {
 		for (int intentos = 1;; intentos++) {
 			// Se reduce la espera de 60 3 intentos
-			if (intentos > 2)
-				throw new Exception("TIMEOUT: NO apareció un elemento con xpath: " + xpath);
+			if (intentos > 3)
+				throw new Exception("Timeout: NO apareció un elemento con xpath: " + xpath);
 			try {
 				if (isElementPresent(By.xpath(xpath))) {
-					System.out.println("EXISTE el elemento con xpath: " + xpath);
+					System.out.println("Existe el elemento con xpath: " + xpath);
 					// break;
 					return;
 				}
 				Thread.sleep(1000);
-				System.out.println("FIN ESPERA: Intento: " + intentos + " para elemento xpath: " + xpath);
+				System.out.println("Fin Espera: Intento: " + intentos);
 			} catch (Exception e) {
 				e.printStackTrace();
 				throw e;
@@ -75,7 +77,7 @@ public class SeleniumUtilitario {
 	public void waitElementById(String id) throws Exception {
 		for (int intentos = 1;; intentos++) {
 			// Se reduce la espera de 60 3 intentos
-			if (intentos > 2)
+			if (intentos > 3)
 				throw new Exception("Timeout: NO apareció un elemento con id: " + id);
 			try {
 				if (isElementPresent(By.id(id))) {
@@ -97,26 +99,18 @@ public class SeleniumUtilitario {
 	 *            recibe un xpath y realiza click sobre el mismo
 	 */
 	public void clickByXPath(String xpath) {
-		// Versión original
-		// getWait();
-		// driver.findElement(By.xpath(xpath)).click();
-		// Alternativa 1, funciona en Firma Conjunta
-		getWait();
-		// List<WebElement> elementos = driver.findElements(By.xpath(xpath));
-		// // Se toma el último elemento
-		// elementos.get(elementos.size()-1).click();
-		// Alternativa 2, si tien contains el xpath, va la alternativa 2, sino
-		// la 1
-		List<WebElement> elementos = driver.findElements(By.xpath(xpath));
-		if (xpath.contains("[contains(") && (elementos.size() > 1) ) {
-			// Puede tener más de un elemento
-			// Se toma el último elemento
-//			elementos.get(elementos.size() - 1).click();
-			elementos.get(0).click();
-		} else {
-			driver.findElement(By.xpath(xpath)).click();
-		}
+		driver.findElement(By.xpath(xpath)).click();
 	}
+	
+	/**
+	 * @param xpath
+	 * @param DatoEntrada
+	 *            recibe un xpath y en posterior envia al elemento DatoEntrada
+	 */
+	public void sendKeysByXPath(String xpath, String DatoEntrada) {
+		driver.findElement(By.xpath(xpath)).sendKeys(DatoEntrada);
+	}
+	
 
 	/**
 	 * @param xpath

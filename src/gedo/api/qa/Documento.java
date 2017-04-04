@@ -335,43 +335,20 @@ public abstract class Documento implements Constantes {
 	 *            válido para producir el documento.
 	 * @param mensajeParaProductor
 	 *            - Se trata de un mensaje a enviar al productor de la tarea.
-	 * @throws Exception
 	 * @see - Esta lógica tiene un problema a resolver: Si existe más de un
 	 *      usuario con el mismo nombre y apellido no podría distinguir entre
 	 *      ambos
 	 */
-	public void enviarAProducirTareaUsuario(String usuarioProductor, String mensajeParaProductor) throws Exception {
+	public void enviarAProducirTareaUsuario(String usuarioProductor, String mensajeParaProductor) {
 		driver.findElement(By.xpath(TEXTAREA)).clear();
 		driver.findElement(By.xpath(TEXTAREA)).sendKeys(mensajeParaProductor);
 		// Extraer/Factorizar ya que este código se repite cada vez que se tiene
 		// un input de carga de usuario
-		cargarInputSeleccionarUsuarioByXPath(usuarioProductor, CAMPOPRODUCTOR);
-		// Extraer
-	}
-
-	/**
-	 * @param usuario
-	 *            Nombre y apellido exacto del Usuario
-	 * @param xpathCampoUsuario
-	 *            recibe el xpath del campo de usuario, se creó de este modo ya
-	 *            que ye se llama al mismo comportamiento en diferentes lugares,
-	 *            por ejemplo en la carga de destinatarios de una CCOO o en la
-	 *            carga de usuarios firmantes de una tarea de Firma Conjunta
-	 *            TODO - Extraer y colocar en otra clase, sugerido:
-	 *            SeleniumUtilitario, u otra alternativa podría ser exender esta
-	 *            misma y crear SeleniumUtilitarioGEDO.
-	 * @throws Exception
-	 *             En caso de no encontrar el elemento por xpath corta la
-	 *             ejecución
-	 */
-	private void cargarInputSeleccionarUsuarioByXPath(String usuario, String xpathCampoUsuario) throws Exception {
-		// getSeleniumUtilitario().waitElementByXpath(xpathCampoUsuario);
-		// driver.findElement(By.xpath(xpathCampoUsuario)).clear();
-		// driver.findElement(By.xpath(xpathCampoUsuario)).sendKeys("");
-		getSeleniumUtilitario().getWait();
-		driver.findElement(By.xpath(xpathCampoUsuario)).sendKeys(usuario);
-		getSeleniumUtilitario().getWait();
+		driver.findElement(By.xpath(CAMPOPRODUCTOR)).clear();
+		driver.findElement(By.xpath(CAMPOPRODUCTOR)).sendKeys("");
+		driver.findElement(By.xpath(CAMPOPRODUCTOR)).sendKeys(usuarioProductor);
 		driver.findElement(By.cssSelector(TDZ_COMBOITEM_TEXT)).click();
+		// Extraer
 	}
 
 	/**
@@ -473,7 +450,7 @@ public abstract class Documento implements Constantes {
 	 */
 	private void cargarDestinatariosCCOO(String[] listaDestinatarios, int tipoDestinatario)
 			throws Exception, IOException {
-		int cantidadElementosListaDestinatarios = (listaDestinatarios != null) ? listaDestinatarios.length : 0;
+		int cantidadElementosListaDestinatarios = listaDestinatarios.length;
 		if (listaDestinatarios.length > 0) {
 			// Itera la lista de strings para ir cargando los destintarios
 			for (int i = 0; i < cantidadElementosListaDestinatarios; i++) {
@@ -532,69 +509,4 @@ public abstract class Documento implements Constantes {
 		getSeleniumUtilitario().clickByXPath(DEFINIRDESTINATARIOS);
 	}
 
-	/**
-	 * Se encarga de cargar los firmantes de una tarea de firma conjunta
-	 * 
-	 * @param listaFirmante
-	 *            TODO
-	 * @throws Exception
-	 */
-	public void cargarFirmantesOmitirRevisores(String[] listaFirmantes) throws Exception {
-		getSeleniumUtilitario().clickByXPath(CARGARUSUARIOSFIRMANTES);
-		int cantidadElementosListaFirmantes = (listaFirmantes != null) ? listaFirmantes.length : 0;
-		// La cantidad mínima de firmantes es 2
-		if (listaFirmantes.length > 1) {
-			for (int i = 0; i < cantidadElementosListaFirmantes; i++) {
-				cargarInputSeleccionarUsuarioByXPath(listaFirmantes[i], CAMPOUSUARIOFIRMANTE);
-				getSeleniumUtilitario().getWait();
-				getCapturarPantalla().capturarPantalla();
-				// Agregar a la lista de firmantes
-				getSeleniumUtilitario().clickByXPath(BOTONAGREGAR);
-				getSeleniumUtilitario().getWait();
-				getCapturarPantalla().capturarPantalla();
-				if (usuarioFirmanteTieneRevisor()) {
-					getCapturarPantalla().capturarPantalla();
-					getSeleniumUtilitario().getWait();
-					noAgregarRevisorFirmante();
-					getCapturarPantalla().capturarPantalla();
-				}
-			}
-			// getSeleniumUtilitario().clickByXPath(BOTONGUARDAR);
-		} else {
-			throw new Exception("Debe cargar como mínimo 2 firmantes. Rearmar el set de datos y volver a ejecutar");
-		}
-	}
-
-	/**
-	 * 
-	 * */
-	private void agregarRevisorFirmante(String string) {
-		// TODO Auto-generated method stub
-
-	}
-
-	/**
-	 * 
-	 * */
-	private void noAgregarRevisorFirmante() {
-		getSeleniumUtilitario().clickByXPath(BOTONNO);
-	}
-
-	/**
-	 * Validar en caso de que no tenga revisor un firmante.
-	 * ----------------------------------------------------------------------
-	 * TODO A futuro sería idea validar esto directamente contra EU
-	 */
-	private boolean usuarioFirmanteTieneRevisor() {
-		try {
-			// Se valida que si el usuario firmante no tiene revisor
-			getSeleniumUtilitario().waitElementByXpath(CARTELFIRMANTENOREVISOR);
-			getCapturarPantalla().capturarPantalla();
-			return true;
-		} catch (Exception e) {
-			// Se termina la espera y no apareció el cartel de validación de
-			// revisor
-		}
-		return false;
-	}
 }

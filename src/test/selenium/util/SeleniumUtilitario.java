@@ -97,22 +97,21 @@ public class SeleniumUtilitario {
 	 *            recibe un xpath y realiza click sobre el mismo
 	 */
 	public void clickByXPath(String xpath) {
-		// Versión original
-		// getWait();
-		// driver.findElement(By.xpath(xpath)).click();
-		// Alternativa 1, funciona en Firma Conjunta
 		getWait();
 		// List<WebElement> elementos = driver.findElements(By.xpath(xpath));
+		// if (xpath.contains("[contains(") && (elementos.size() > 1) ) {
+		// // Puede tener más de un elemento
 		// // Se toma el último elemento
-		// elementos.get(elementos.size()-1).click();
-		// Alternativa 2, si tien contains el xpath, va la alternativa 2, sino
-		// la 1
+		//// elementos.get(elementos.size() - 1).click();
+		// elementos.get(0).click();
+		// } else {
+		// driver.findElement(By.xpath(xpath)).click();
+		// }
+		// Versión 3, directamente hacer click sobre el elemento 0
 		List<WebElement> elementos = driver.findElements(By.xpath(xpath));
-		if (xpath.contains("[contains(") && (elementos.size() > 1) ) {
-			// Puede tener más de un elemento
-			// Se toma el último elemento
-//			elementos.get(elementos.size() - 1).click();
-			elementos.get(0).click();
+		if (elementos.size() > 1) {
+				elementos.get(0).click();
+			// elementos.get(0).click();
 		} else {
 			driver.findElement(By.xpath(xpath)).click();
 		}

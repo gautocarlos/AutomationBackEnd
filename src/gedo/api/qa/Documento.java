@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+
+import gde.api.qa.Constantes;
 import test.selenium.util.CapturarPantalla;
 import test.selenium.util.SeleniumUtilitario;
 

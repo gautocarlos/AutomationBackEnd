@@ -1,15 +1,32 @@
-package gedo.api.qa;
+package gde.api.qa;
 
 /***
  * @autor Carlos Gauto
  **/
 public interface Constantes {
+	//TABS GEDO
+	public static final String TABMISTAREAS = "//span[contains(., 'Mis Tareas') and contains(@class, 'z-tab-text')]";
+	public static final String TABTAREASOTROSUSUARIOS = "//span[contains(., 'Tareas otros Usuarios') and contains(@class, 'z-tab-text')]";
+	public static final String TABTAREASSUPERVISADOS = "//span[contains(., 'Tareas Supervisados') and contains(@class, 'z-tab-text')]";
+	public static final String TABADMTIPOSDOCUMENTOS = "//span[contains(., 'Adm. Tipos Documentos') and contains(@class, 'z-tab-text')]";
+	public static final String TABCONSULTAS = "//span[contains(., 'Consultas') and contains(@class, 'z-tab-text')]";
+	public static final String TABPLANTILLAS = "//span[contains(., 'Plantillas') and contains(@class, 'z-tab-text')]";
+	public static final String TABPORTAFIRMA = "//span[contains(., 'Porta Firma') and contains(@class, 'z-tab-text')]";
+	//Botones TABCONSULTA
+	public static final String BUSQUEDADETAREAS  = "//button[contains(., 'Búsqueda de Tareas') and contains(@type, 'button')]";
+	public static final String BUSQUEDADETAREASZ  = "//div[contains(.,button[contains(., 'Búsqueda de Tareas') and contains(@type, 'button')])]";
+	public static final String BUSQUEDADETAREASX  = "//table/tbody/tr/td[4]/a/table/tbody/tr/td[2]/div/button";
+	public static final String BUSQUEDADEDOCUMENTOS  = "//button[contains(text(), 'Búsqueda de Documentos') and contains(@type, 'button')]";
+	public static final String BUSCAR  = "//td[contains(., 'Buscar') and contains(@class, 'z-button-cm')]";
 	// Span de la pantalla De la Descripción del tipo de trámite a iniciar
 	public static final String DESCRIPCIONDELTIPODEDOCUMENTO = "//span[contains(text(),'Descripción del tipo de documento')]";
+	//Patrones para generar screenshot por clase
 	public static final String GEDOLIBRE_ = "GEDOLIBRE_";
 	public static final String GEDOIMPORTADO_ = "GEDOIMPORTADO_";
 	public static final String GEDOTEMPLATE_ = "GEDOTEMPLATE_";
 	public static final String GEDOIMPTEMPLATE_ = "GEDOIMPTEMPLATE_";
+	public static final String TAREA_ = "TAREA_";
+	//
 	public static final String URLGEDOTEST = "http://eug.nac.gde.gob.ar/gedo-web/";
 	public static final String URLGEDOQA = "http://eug.qac.gde.gob.ar/gedo-web/";
 	public static final String INICIODOCUMENTO = "//img[contains(@src,'./imagenes/page_white_text.png')]";
@@ -78,4 +95,5 @@ public interface Constantes {
 	public static final int INDICEBOTONMASDESTINATARIO = 0;
 	public static final int INDICEBOTONMASCOPIA = 1;
 	public static final int INDICEBOTONMASCOPIAOCULTA = 2;
+
 }

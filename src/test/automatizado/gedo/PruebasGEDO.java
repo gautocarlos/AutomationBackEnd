@@ -2,14 +2,17 @@ package test.automatizado.gedo;
 
 import static org.junit.Assert.*;
 
+import java.util.Date;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 
-import gedo.api.qa.Constantes;
+import gde.api.qa.Constantes;
 import gedo.api.qa.DocumentoImportado;
 import gedo.api.qa.DocumentoLibre;
+import gedo.api.qa.Tarea;
 import test.selenium.util.DriverPhantom;
 import test.selenium.util.IngresoLoginCas;
 
@@ -79,6 +82,25 @@ public class PruebasGEDO implements Constantes {
 	}
 
 	// Lógica de automatización
+	@Test
+	public void testGEDOBusquedaDeTareas() throws Exception {
+		String nombreMetodo = "testGEDOBusquedaDeTareas";
+		Tarea tarea = new Tarea(getDriver(), RUTAARCHIVOSENTRADA);
+		Date fechaDesde = null;
+		Date fechaHasta = null;
+		String tipoDeDocumento = null;
+		String tipoDeTarea = null;
+		String usuarioDestino = null;
+		try {
+			tarea.busquedaDeTareas(fechaDesde, fechaHasta, tipoDeDocumento, tipoDeTarea, usuarioDestino);
+			tarea.getCapturarPantalla().setPatron(nombreMetodo);
+			tarea.getCapturarPantalla().capturarPantalla();
+		} catch (Exception e) {
+			tarea.getCapturarPantalla().capturarPantalla();
+			e.printStackTrace();
+			throw e;
+		}
+	}
 
 	@Test
 	public void testGEDOFirmaConjuntaLibreCargarFirmantes() throws Exception {

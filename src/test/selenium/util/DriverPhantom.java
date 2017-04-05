@@ -11,7 +11,6 @@ public class DriverPhantom extends DriverWeb {
 
 	@Override
 	public WebDriver inicializar() throws Exception {
-//		return null;
 		DesiredCapabilities caps = new DesiredCapabilities();
 		caps.setJavascriptEnabled(true);
 		caps.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY,
@@ -22,6 +21,9 @@ public class DriverPhantom extends DriverWeb {
 		try {
 			setDriver(new PhantomJSDriver(caps));
 			getDriver().manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			// Fix tamaño pantalla
+			getDriver().manage().window().maximize();
+			// Fix tamaño pantalla
 			System.out.println("Inicialización Driver PhantomJS: SIN ERRORES");
 		} catch (Exception e) {
 			System.out.println("Inicialización Driver PhantomJS: ERROR");

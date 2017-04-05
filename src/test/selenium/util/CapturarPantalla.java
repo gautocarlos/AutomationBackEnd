@@ -11,7 +11,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
-import gedo.api.qa.Constantes;
+import gde.api.qa.Constantes;
 //import org.openqa.selenium.phantomjs.PhantomJSDriver;
 //import org.openqa.selenium.remote.Augmenter;
 /***
@@ -20,6 +20,9 @@ import gedo.api.qa.Constantes;
 public class CapturarPantalla implements Constantes {
 
 	private WebDriver driver;
+	/**
+	 * TODO Pasar la ruta de captura como constante
+	 * */
 	private String rutaCapturasDePantalla = "capturasDePantalla";
 	private String patron;
 

@@ -263,7 +263,7 @@ public class PruebasGEDO implements Constantes {
 
 	}
 
-	@Test
+	//@Test
 	public void testGEDODocumentoImportado() throws Exception {
 		// Parametrizar o externalizar datos variables
 		String nombreMetodo = "testGEDODocumentoImportado";
@@ -411,7 +411,7 @@ public class PruebasGEDO implements Constantes {
 		}	
 	}
 	
-	//@Test
+	@Test
 	public void testArchivoTrabajoPantallaProducirDocumento() throws Exception{
 		DocumentoLibre documentoLibre= new DocumentoLibre(getDriver(), RUTAARCHIVOSENTRADA);
 		String archivoImportado[]={"archivoImportado.png"};

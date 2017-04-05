@@ -1,5 +1,6 @@
 package test.selenium.util;
 
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 
 public abstract class DriverWeb{
@@ -11,6 +12,7 @@ public abstract class DriverWeb{
 
 	public void setDriver(WebDriver driver) {
 		this.driver = driver;
+		this.driver.manage().window().maximize();
 	}
 
 //	/**
